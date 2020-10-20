@@ -11,8 +11,6 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
     "@snowpack/app-scripts-react": "^1.12.4",
     "@snowpack/plugin-dotenv": "^2.0.4",
     "@snowpack/plugin-react-refresh": "^2.3.3",
@@ -23,8 +21,13 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/snowpack-env": "^2.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
     "@web/test-runner": "^0.9.0",
     "chai": "^4.2.0",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-config-problems": "^5.0.0",
     "prettier": "^2.0.5",
     "snowpack": "^2.15.0",
     "typescript": "^4.0.0"
