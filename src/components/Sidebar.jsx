@@ -1,6 +1,7 @@
 import React from 'react';
+import Inspector from './Inspector';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   return (
     <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
       <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
@@ -33,9 +34,10 @@ const Sidebar = () => {
             </svg>
             Dashboard
           </a>
+          <Inspector data={props.data} />
         </nav>
       </div>
-      <div className="flex flex-shrink-0 p-4 border-t border-gray-200">
+      {/* <div className="flex flex-shrink-0 p-4 border-t border-gray-200">
         <a href="/" className="flex-shrink-0 block w-full group">
           <div className="flex items-center">
             <div>
@@ -55,7 +57,7 @@ const Sidebar = () => {
             </div>
           </div>
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };

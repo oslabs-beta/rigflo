@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Canvas from './Canvas';
 
+import { removeElements, addEdge } from 'react-flow-renderer';
+
 import initialElements from '../data/elements.js';
 
 const Shell = () => {
@@ -29,7 +31,7 @@ const Shell = () => {
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
-          <Sidebar />
+          <Sidebar data={elements} />
         </div>
       </div>
       <div className="flex flex-col flex-1 w-0 overflow-hidden">

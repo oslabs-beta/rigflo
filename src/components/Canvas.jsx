@@ -1,11 +1,5 @@
 import React from 'react';
-import ReactFlow, {
-  removeElements,
-  addEdge,
-  MiniMap,
-  Controls,
-  Background,
-} from 'react-flow-renderer';
+import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
