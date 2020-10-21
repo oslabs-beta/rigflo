@@ -1,37 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import './tailwind.output.css';
 
 function App() {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit !!!!<code>src/App.jsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div className="flex max-w-md p-6 mx-auto mt-10 bg-gray-100 rounded-lg shadow-xl">
+      <div className="pt-1 ml-6">
+        <h1 className="text-2xl leading-tight text-blue-700">rigflow 🚀</h1>
+        <p className="text-base leading-normal text-gray-700">rigflo ®</p>
+      </div>
     </div>
   );
 }

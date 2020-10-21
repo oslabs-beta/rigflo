@@ -5,21 +5,26 @@
     "since 2017-06"
   ],
   "scripts": {
-    "electron-dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:8080 && electron . --enable-logging\"",
-    "start": "snowpack dev --polyfill-node",
+    "dev:snowpack": "snowpack dev",
+    "dev:electron": "wait-on http://localhost:8080 && electron .",
+    "start": "npm-run-all build:tailwind --parallel watch:tailwind dev:snowpack dev:electron",
+    "prebuild": "run-s build:tailwind",
     "build": "snowpack build",
+    "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
+    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
     "test": "web-test-runner \"src/**/*.test.tsx\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "chokidar-cli": "2.1.0",
     "concurrently": "5.3.0",
     "electron": "10.1.4",
     "electron-is-dev": "1.2.0",
     "npm-run-all": "4.1.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "tailwind": "4.0.0",
+    "tailwindcss": "1.9.5",
     "wait-on": "5.2.0"
   },
   "devDependencies": {
