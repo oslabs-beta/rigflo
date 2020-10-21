@@ -12,8 +12,8 @@ let mainWindow;
 
 async function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
+    width: 1920,
+    height: 1080,
     alwaysOnTop: false,
     title: 'rigflo electron',
     show: true,
