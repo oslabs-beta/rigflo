@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
+  "extends": ["prettier"],
   "env": {
     "browser": true,
     "node": true,
@@ -14,10 +14,7 @@
   },
   "rules": {
     "no-console": "off",
-    "no-undef": "error",
-    "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-var-requires": 0
+    "no-undef": "error"
   },
   "ignorePatterns": ["web-test-runner.config.js"]
 }
