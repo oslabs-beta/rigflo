@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["prettier"],
+  "extends": ["problems", "prettier"],
   "env": {
     "browser": true,
     "node": true,
