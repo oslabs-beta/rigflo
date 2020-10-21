@@ -11,6 +11,7 @@ export default [
       ),
     },
     position: { x: 250, y: 0 },
+    selected: false,
   },
   {
     id: '2',

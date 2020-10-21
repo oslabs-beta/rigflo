@@ -8,6 +8,7 @@ import initialElements from '../data/elements.js';
 
 const Shell = () => {
   const [elements, setElements] = useState(initialElements);
+  const [selectedEl, setSelectedEl] = useState(null);
 
   const onElementsRemove = (elementsToRemove) =>
     setElements((els) => removeElements(elementsToRemove, els));
@@ -27,11 +28,16 @@ const Shell = () => {
     };
     setElements([...elements, node]);
   };
+
+  const onElementClick = (event, element) => {
+    setSelectedEl(element);
+  };
+
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
-          <Sidebar data={elements} />
+          <Sidebar selectedEl={selectedEl} />
         </div>
       </div>
       <div className="flex flex-col flex-1 w-0 overflow-hidden">
@@ -76,6 +82,7 @@ const Shell = () => {
                     onElementsRemove={onElementsRemove}
                     onConnect={onConnect}
                     addNode={addNode}
+                    onElementClick={onElementClick}
                   />
                 </div>
               </div>

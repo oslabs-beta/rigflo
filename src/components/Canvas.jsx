@@ -7,7 +7,13 @@ const onLoad = (reactFlowInstance) => {
 };
 
 const Canvas = (props) => {
-  const { elements, onElementsRemove, onConnect, addNode } = props;
+  const {
+    elements,
+    onElementsRemove,
+    onElementClick,
+    onConnect,
+    addNode,
+  } = props;
   return (
     <>
       <button onClick={addNode}>Add node</button>
@@ -18,6 +24,7 @@ const Canvas = (props) => {
         onLoad={onLoad}
         snapToGrid={true}
         snapGrid={[15, 15]}
+        onElementClick={onElementClick}
       >
         <Background variant="dots" gap={12} size={0.5} />
         <Controls style={{ bottom: '150px' }} />

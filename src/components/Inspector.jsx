@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Inspector = (props) => {
+const Inspector = ({ selectedEl }) => {
   return (
     <div id="inspector">
       <div>
-        <pre>{JSON.stringify(props)}</pre>
+        <pre>{JSON.stringify(selectedEl)}</pre>
       </div>
     </div>
   );
