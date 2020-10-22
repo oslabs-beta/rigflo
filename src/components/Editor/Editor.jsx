@@ -1,6 +1,7 @@
 import React from 'react';
 import Path from './Path';
-import Method from './Method';
+import SelectMethod from './SelectMethod';
+import Description from './Description';
 
 export default function Editor(props) {
   return (
@@ -17,7 +18,8 @@ export default function Editor(props) {
               </p>
             </div>
             <Path />
-            <Method />
+            <SelectMethod />
+            {/* <Description /> */}
           </div>
         </div>
       </form>
