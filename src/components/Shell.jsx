@@ -9,14 +9,23 @@ import initialElements from '../data/elements.js';
 const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
+  // console.log({ selectedEl });
 
-  const onElementsRemove = (elementsToRemove) =>
-    setElements((els) => removeElements(elementsToRemove, els));
+  const handleRemoveElements = () => {
+    console.log(selectedEl);
+    setElements((elements) => {
+      const returnedElements = removeElements([selectedEl], elements);
+      console.log({ returnedElements });
+      return returnedElements;
+    });
+  };
 
-  const onConnect = (params) => setElements((els) => addEdge(params, els));
+  const onConnect = (params) =>
+    setElements((elements) => addEdge(params, elements));
+
   const addNode = () => {
     const node = {
-      id: '44444',
+      id: `${elements.length + 1}`,
       data: {
         label: (
           <>
@@ -24,6 +33,9 @@ const Shell = () => {
           </>
         ),
       },
+      // type: 'serverNode',
+      type: 'pathNode',
+
       position: { x: 100, y: 100 },
     };
     setElements([...elements, node]);
@@ -79,7 +91,7 @@ const Shell = () => {
                 <div className="h-screen border-gray-200 border-dashed rounded-lg">
                   <Canvas
                     elements={elements}
-                    onElementsRemove={onElementsRemove}
+                    onElementsRemove={handleRemoveElements}
                     onConnect={onConnect}
                     addNode={addNode}
                     onElementClick={onElementClick}
