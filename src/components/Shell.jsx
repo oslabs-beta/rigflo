@@ -17,7 +17,7 @@ const Shell = () => {
 
   const addNode = () => {
     const node = {
-      id: '44444',
+      id: `${elements.length + 1}`,
       data: {
         label: (
           <>
