@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Canvas from './Canvas';
 
+import { removeElements, addEdge } from 'react-flow-renderer';
+
+import initialElements from '../data/elements.js';
+
 const Shell = () => {
+  const [elements, setElements] = useState(initialElements);
+  const [selectedEl, setSelectedEl] = useState(null);
+
+  const onElementsRemove = (elementsToRemove) =>
+    setElements((els) => removeElements(elementsToRemove, els));
+
+  const onConnect = (params) => setElements((els) => addEdge(params, els));
+  const addNode = () => {
+    const node = {
+      id: '44444',
+      data: {
+        label: (
+          <>
+            This is a <strong>default node</strong>
+          </>
+        ),
+      },
+      position: { x: 100, y: 100 },
+    };
+    setElements([...elements, node]);
+  };
+
+  const onElementClick = (event, element) => {
+    setSelectedEl(element);
+  };
+
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
-          <Sidebar />
+          <Sidebar selectedEl={selectedEl} />
         </div>
       </div>
       <div className="flex flex-col flex-1 w-0 overflow-hidden">
@@ -47,7 +77,13 @@ const Shell = () => {
               {/* Replace with your content */}
               <div className="py-4">
                 <div className="h-screen border-gray-200 border-dashed rounded-lg">
-                  <Canvas />
+                  <Canvas
+                    elements={elements}
+                    onElementsRemove={onElementsRemove}
+                    onConnect={onConnect}
+                    addNode={addNode}
+                    onElementClick={onElementClick}
+                  />
                 </div>
               </div>
               {/* /End replace */}
