@@ -25,7 +25,8 @@ const Canvas = (props) => {
 
   return (
     <>
-      <button onClick={addNode}>Add node</button>
+      <button onClick={addNode}>Add node</button> <br />
+      <button onClick={onElementsRemove}>Delete selected node</button>
       <ReactFlow
         elements={elements}
         onElementsRemove={onElementsRemove}
