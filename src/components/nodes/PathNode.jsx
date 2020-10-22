@@ -1,10 +1,6 @@
 import React, { memo } from 'react';
 import { Handle } from 'react-flow-renderer';
-
-const style = {
-  border: '1px solid grey',
-};
-export default memo(({ data, style }) => {
+export default memo(({ data }) => {
   return (
     <>
       <Handle
