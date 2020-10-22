@@ -14,6 +14,7 @@ const Shell = () => {
     setElements((els) => removeElements(elementsToRemove, els));
 
   const onConnect = (params) => setElements((els) => addEdge(params, els));
+
   const addNode = () => {
     const node = {
       id: '44444',
@@ -24,6 +25,7 @@ const Shell = () => {
           </>
         ),
       },
+      type: 'serverNode',
       position: { x: 100, y: 100 },
     };
     setElements([...elements, node]);
