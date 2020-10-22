@@ -10,7 +10,7 @@ export default memo(({ data, style }) => {
       <Handle
         type="target"
         position="left"
-        // style={{ background: '#555' }}
+        style={{ background: '#555' }}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
       <div>Custom Server Node</div>
@@ -18,13 +18,13 @@ export default memo(({ data, style }) => {
         type="source"
         position="right"
         id="a"
-        // style={{ top: 10, background: '#555' }}
+        style={{ top: 10, background: '#555' }}
       />
       <Handle
         type="source"
         position="right"
         id="b"
-        // style={{ bottom: 10, top: 'auto', background: '#555' }}
+        style={{ bottom: 10, top: 'auto', background: '#555' }}
       />
     </>
   );

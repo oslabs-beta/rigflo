@@ -2,6 +2,7 @@ import React from 'react';
 import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 
 import ServerNode from './nodes/ServerNode';
+import PathNode from './nodes/PathNode';
 
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
@@ -10,6 +11,7 @@ const onLoad = (reactFlowInstance) => {
 
 const nodeTypes = {
   serverNode: ServerNode,
+  pathNode: PathNode,
 };
 
 const Canvas = (props) => {

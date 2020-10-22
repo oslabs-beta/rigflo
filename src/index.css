@@ -12,7 +12,8 @@ code {
     monospace;
 }
 
-.react-flow__node-serverNode {
+.react-flow__node-serverNode,
+.react-flow__node-pathNode {
   padding: 10px;
   border-radius: 3px;
   width: 150px;
@@ -21,4 +22,8 @@ code {
   text-align: center;
   border-width: 1px;
   border-style: solid;
+}
+
+.react-flow__node-pathNode {
+  border: 1px solid green;
 }
