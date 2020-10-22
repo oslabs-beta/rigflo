@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 
+import ServerNode from './nodes/ServerNode';
+
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
   reactFlowInstance.fitView();
@@ -14,6 +16,11 @@ const Canvas = (props) => {
     onConnect,
     addNode,
   } = props;
+
+  const nodeTypes = {
+    serverNode: ServerNode,
+  };
+
   return (
     <>
       <button onClick={addNode}>Add node</button>
@@ -25,6 +32,7 @@ const Canvas = (props) => {
         snapToGrid={true}
         snapGrid={[15, 15]}
         onElementClick={onElementClick}
+        nodeTypes={nodeTypes}
       >
         <Background variant="dots" gap={12} size={0.5} />
         <Controls style={{ bottom: '150px' }} />

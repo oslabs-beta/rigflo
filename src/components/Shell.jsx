@@ -24,6 +24,7 @@ const Shell = () => {
           </>
         ),
       },
+      type: 'serverNode',
       position: { x: 100, y: 100 },
     };
     setElements([...elements, node]);
