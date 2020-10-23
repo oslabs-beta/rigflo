@@ -4,7 +4,7 @@ import SelectMethod from './SelectMethod';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
 
-export default function Editor(props) {
+export default function Editor({ addNode }) {
   return (
     <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
       <form>
@@ -21,7 +21,7 @@ export default function Editor(props) {
             <Path />
             <SelectMethod />
             {/* <Description /> */}
-            <AddPathBtn />
+            <AddPathBtn addNode={addNode} />
           </div>
         </div>
       </form>
