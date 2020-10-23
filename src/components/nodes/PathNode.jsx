@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { Handle } from 'react-flow-renderer';
 export default memo(({ data }) => {
+  console.log(data);
   return (
     <>
       <Handle
@@ -9,7 +10,7 @@ export default memo(({ data }) => {
         // style={{ background: '#555' }}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-      <div>Custom Path Node</div>
+      <div>{data.title}</div>
       <Handle
         type="source"
         position="bottom"
