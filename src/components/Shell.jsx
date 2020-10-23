@@ -9,6 +9,7 @@ import initialElements from '../data/elements.js';
 const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
+  const [enableDeleteBtn, setEnableDeleteBtn] = useState(true);
   // console.log({ selectedEl });
 
   const handleRemoveElements = () => {
@@ -23,18 +24,25 @@ const Shell = () => {
   const onConnect = (params) =>
     setElements((elements) => addEdge(params, elements));
 
-  const addNode = () => {
+  const addNode = (e) => {
+    e.preventDefault();
+
+    const path = document.getElementById('path');
+    const method = document.getElementById('method');
+    const nodeType = document.getElementById('add-path-btn');
+
     const node = {
       id: `${elements.length + 1}`,
       data: {
         label: (
           <>
-            This is a <strong>default node</strong>
+            <strong>{path.value}</strong>
           </>
         ),
+        title: `${method.innerText}: ${path.value}`,
       },
-      // type: 'serverNode',
-      type: 'pathNode',
+      method: method.innerText,
+      type: `${nodeType.getAttribute('data-value')}`,
 
       position: { x: 100, y: 100 },
     };
@@ -43,13 +51,14 @@ const Shell = () => {
 
   const onElementClick = (event, element) => {
     setSelectedEl(element);
+    setEnableDeleteBtn(false);
   };
 
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-96">
-          <Sidebar selectedEl={selectedEl} />
+          <Sidebar selectedEl={selectedEl} addNode={addNode} />
         </div>
       </div>
       <div className="flex flex-col flex-1 w-0 overflow-hidden">
@@ -93,8 +102,8 @@ const Shell = () => {
                     elements={elements}
                     onElementsRemove={handleRemoveElements}
                     onConnect={onConnect}
-                    addNode={addNode}
                     onElementClick={onElementClick}
+                    enableDeleteBtn={enableDeleteBtn}
                   />
                 </div>
               </div>
