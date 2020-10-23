@@ -2,6 +2,7 @@ import React from 'react';
 import Path from './Path';
 import SelectMethod from './SelectMethod';
 import Description from './Description';
+import AddPathBtn from './AddPathBtn';
 
 export default function Editor(props) {
   return (
@@ -20,6 +21,7 @@ export default function Editor(props) {
             <Path />
             <SelectMethod />
             {/* <Description /> */}
+            <AddPathBtn />
           </div>
         </div>
       </form>
