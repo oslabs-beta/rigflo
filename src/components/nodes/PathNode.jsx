@@ -12,7 +12,7 @@ export default memo(({ data }) => {
       <div>Custom Path Node</div>
       <Handle
         type="source"
-        position="right"
+        position="bottom"
         id="a"
         // style={{ top: 10, background: '#555' }}
       />

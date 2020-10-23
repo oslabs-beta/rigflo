@@ -48,7 +48,7 @@ const Shell = () => {
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-64">
+        <div className="flex flex-col w-96">
           <Sidebar selectedEl={selectedEl} />
         </div>
       </div>
