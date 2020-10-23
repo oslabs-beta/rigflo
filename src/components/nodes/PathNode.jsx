@@ -9,7 +9,7 @@ export default memo(({ data }) => {
         // style={{ background: '#555' }}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-      <div>Custom Path Node</div>
+      <div>{data.title}</div>
       <Handle
         type="source"
         position="bottom"

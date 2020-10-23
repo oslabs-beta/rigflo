@@ -3,7 +3,7 @@ import Inspector from './Inspector';
 import Editor from './Editor/Editor';
 import Avatar from './Avatar';
 
-const Sidebar = ({ selectedEl }) => {
+const Sidebar = ({ selectedEl, addNode }) => {
   return (
     <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
       <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
@@ -38,7 +38,7 @@ const Sidebar = ({ selectedEl }) => {
           </a>
         </nav>
         <Inspector selectedEl={selectedEl} />
-        <Editor />
+        <Editor addNode={addNode} />
         {/* <Avatar /> */}
       </div>
     </div>
