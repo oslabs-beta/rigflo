@@ -12,12 +12,14 @@
     "build": "snowpack build",
     "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
+    "build:parser": "tsc -p ./parser",
     "test": "web-test-runner \"src/**/*.test.tsx\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "@tailwindcss/ui": "0.6.2",
+    "ajv": "^6.12.6",
     "chokidar-cli": "2.1.0",
     "electron": "10.1.4",
     "electron-is-dev": "1.2.0",

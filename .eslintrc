@@ -1,7 +1,5 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
   "extends": ["problems", "prettier"],
   "env": {
     "browser": true,
@@ -15,7 +13,7 @@
   "rules": {
     "no-console": "off",
     "no-undef": "error",
-    "no-use-before-define": "off"
+    "no-use-before-define": "warn"
   },
   "ignorePatterns": ["web-test-runner.config.js"]
 }
