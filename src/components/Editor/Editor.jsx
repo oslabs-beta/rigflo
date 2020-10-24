@@ -20,7 +20,7 @@ export default function Editor({ addNode }) {
             </div>
             <Path />
             <SelectMethod />
-            {/* <Description /> */}
+            <Description />
             <AddPathBtn addNode={addNode} />
           </div>
         </div>
