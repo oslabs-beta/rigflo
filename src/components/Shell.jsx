@@ -28,6 +28,7 @@ const Shell = () => {
     const path = document.getElementById('path');
     const method = document.getElementById('method');
     const nodeType = document.getElementById('add-path-btn');
+    const description = document.getElementById('description');
 
     const node = {
       id: `${method.innerText}-${elements.length + 1}`,
@@ -45,6 +46,9 @@ const Shell = () => {
       position: { x: 100, y: 100 },
     };
     setElements([...elements, node]);
+
+    path.value = '';
+    description.value = '';
   };
 
   const onElementClick = (event, element) => {
