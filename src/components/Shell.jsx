@@ -10,15 +10,13 @@ const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
   const [enableDeleteBtn, setEnableDeleteBtn] = useState(true);
-  // console.log({ selectedEl });
 
   const handleRemoveElements = () => {
-    console.log(selectedEl);
     setElements((elements) => {
       const returnedElements = removeElements([selectedEl], elements);
-      console.log({ returnedElements });
       return returnedElements;
     });
+    setEnableDeleteBtn(true);
   };
 
   const onConnect = (params) =>
@@ -32,18 +30,18 @@ const Shell = () => {
     const nodeType = document.getElementById('add-path-btn');
 
     const node = {
-      id: `${elements.length + 1}`,
+      id: `${method.innerText}-${elements.length + 1}`,
       data: {
         label: (
           <>
-            <strong>{path.value}</strong>
+            <strong>
+              {method.innerText}: {path.value}
+            </strong>
           </>
         ),
-        title: `${method.innerText}: ${path.value}`,
       },
       method: method.innerText,
       type: `${nodeType.getAttribute('data-value')}`,
-
       position: { x: 100, y: 100 },
     };
     setElements([...elements, node]);
@@ -52,6 +50,10 @@ const Shell = () => {
   const onElementClick = (event, element) => {
     setSelectedEl(element);
     setEnableDeleteBtn(false);
+  };
+
+  const onPaneClick = (event) => {
+    setEnableDeleteBtn(true);
   };
 
   return (
@@ -104,6 +106,7 @@ const Shell = () => {
                     onConnect={onConnect}
                     onElementClick={onElementClick}
                     enableDeleteBtn={enableDeleteBtn}
+                    onPaneClick={onPaneClick}
                   />
                 </div>
               </div>
