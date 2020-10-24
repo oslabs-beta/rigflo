@@ -14,7 +14,7 @@ const Description = () => {
           <textarea
             id="description"
             className="flex-1 block w-full px-3 py-2 rounded-none form-input rounded-r-md sm:text-sm sm:leading-5"
-            placeholder="about the route"
+            placeholder="a little about the route"
           />
         </div>
       </div>
