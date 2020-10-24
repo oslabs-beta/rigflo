@@ -27,6 +27,37 @@ const Editor = ({
   }
   useDidUpdateEffect(updateForm, [selectedEl]);
 
+  const updateNode = (e) => {
+    e.preventDefault();
+    const newElements = elements.map((element) => {
+      if (element.id === selectedEl.id) {
+        console.log({ selectedEl });
+        console.log(element.id);
+        const updatedElement = {
+          ...element,
+          data: {
+            label: (
+              <>
+                <strong>
+                  {selectedMethod}: {pathInput}
+                </strong>
+              </>
+            ),
+            path: pathInput,
+            description: descriptionInput,
+            method: selectedMethod,
+            title: `${selectedMethod}: ${pathInput}`,
+          },
+        };
+        return updatedElement;
+      }
+      return element;
+    });
+    console.log(newElements);
+    setElements(newElements);
+    console.log({ elements });
+  };
+
   const addNode = (e) => {
     e.preventDefault();
 
@@ -80,7 +111,10 @@ const Editor = ({
 
             {selectedEl ? (
               <>
-                <button className="px-4 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-red sm:text-sm sm:leading-5">
+                <button
+                  onClick={updateNode}
+                  className="px-4 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
+                >
                   Edit
                 </button>
                 <button

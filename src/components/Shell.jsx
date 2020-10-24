@@ -9,6 +9,7 @@ const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
   const [enableDeleteBtn, setEnableDeleteBtn] = useState(true);
+  console.log(elements);
 
   const handleRemoveElements = () => {
     setElements((elements) => {
@@ -28,7 +29,6 @@ const Shell = () => {
 
   const onPaneClick = (event) => {
     setEnableDeleteBtn(true);
-    console.log('on pane click');
   };
 
   const onSelectionChange = (elementsToSelect) => {};
