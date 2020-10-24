@@ -22,19 +22,11 @@ const Canvas = (props) => {
     onConnect,
     enableDeleteBtn,
     onSelectionChange,
+    onPaneClick,
   } = props;
 
   return (
     <>
-      {/* //add logic to deactivate button if nothing is selected */}
-      <button
-        type="button"
-        onClick={onElementsRemove}
-        className="px-4 py-2 font-bold text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
-        disabled={false}
-      >
-        Delete selected node
-      </button>
       <ReactFlow
         elements={elements}
         onElementsRemove={onElementsRemove}
@@ -45,6 +37,7 @@ const Canvas = (props) => {
         snapGrid={[15, 15]}
         onElementClick={onElementClick}
         nodeTypes={nodeTypes}
+        onPaneClick={onPaneClick}
       >
         <Background variant="dots" gap={12} size={0.5} />
         <Controls style={{ bottom: '150px' }} />

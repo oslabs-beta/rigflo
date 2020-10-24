@@ -6,7 +6,13 @@ import AddPathBtn from './AddPathBtn';
 
 import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 
-const Editor = ({ setElements, elements, selectedEl, setSelectedEl }) => {
+const Editor = ({
+  setElements,
+  elements,
+  selectedEl,
+  setSelectedEl,
+  handleRemoveElements,
+}) => {
   const initialMethod = 'Select a method';
   const [pathInput, setPathInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
@@ -71,7 +77,23 @@ const Editor = ({ setElements, elements, selectedEl, setSelectedEl }) => {
               descriptionInput={descriptionInput}
               setDescriptionInput={setDescriptionInput}
             />
-            <AddPathBtn addNode={addNode} />
+
+            {selectedEl ? (
+              <>
+                <button className="px-4 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-red sm:text-sm sm:leading-5">
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={handleRemoveElements}
+                  className="px-4 py-2 mt-4 text-red-700 bg-transparent border border-red-500 rounded mb-8font-semibold hover:bg-red-500 hover:text-white hover:border-transparent"
+                >
+                  Delete selected node
+                </button>
+              </>
+            ) : (
+              <AddPathBtn addNode={addNode} />
+            )}
           </div>
         </div>
       </form>

@@ -28,6 +28,7 @@ const Shell = () => {
 
   const onPaneClick = (event) => {
     setEnableDeleteBtn(true);
+    console.log('on pane click');
   };
 
   const onSelectionChange = (elementsToSelect) => {};
@@ -42,6 +43,7 @@ const Shell = () => {
             elements={elements}
             setElements={setElements}
             onSelectionChange={onSelectionChange}
+            handleRemoveElements={handleRemoveElements}
           />
         </div>
       </div>
@@ -89,6 +91,7 @@ const Shell = () => {
                     onElementClick={onElementClick}
                     enableDeleteBtn={enableDeleteBtn}
                     onPaneClick={onPaneClick}
+                    selectedEl={selectedEl}
                     onSelectionChange={onSelectionChange}
                   />
                 </div>

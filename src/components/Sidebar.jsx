@@ -9,6 +9,7 @@ const Sidebar = ({
   addNode,
   elements,
   setElements,
+  handleRemoveElements,
 }) => {
   return (
     <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
@@ -50,6 +51,7 @@ const Sidebar = ({
           setElements={setElements}
           selectedEl={selectedEl}
           setSelectedEl={setSelectedEl}
+          handleRemoveElements={handleRemoveElements}
         />
         {/* <Avatar /> */}
       </div>
