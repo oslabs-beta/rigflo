@@ -21,6 +21,7 @@ const Canvas = (props) => {
     onElementClick,
     onConnect,
     enableDeleteBtn,
+    onSelectionChange,
   } = props;
 
   return (
@@ -37,6 +38,7 @@ const Canvas = (props) => {
       <ReactFlow
         elements={elements}
         onElementsRemove={onElementsRemove}
+        onSelectionChange={onSelectionChange}
         onConnect={onConnect}
         onLoad={onLoad}
         snapToGrid={true}
