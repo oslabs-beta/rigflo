@@ -19,7 +19,7 @@ const Editor = ({ setElements, elements, selectedEl, setSelectedEl }) => {
       setSelectedMethod(selectedEl.data.method);
     }
   }
-  useDidUpdateEffect(updateForm, selectedEl);
+  useDidUpdateEffect(updateForm, [selectedEl]);
 
   const addNode = (e) => {
     e.preventDefault();
