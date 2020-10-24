@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Path from './Path';
 import SelectMethod from './SelectMethod';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
 
-const Editor = ({ setElements, elements }) => {
+import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
+
+const Editor = ({ setElements, elements, selectedEl, setSelectedEl }) => {
   const initialMethod = 'Select a method';
   const [pathInput, setPathInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [selectedMethod, setSelectedMethod] = useState(initialMethod);
 
-  console.log(elements);
+  function updateForm() {
+    if (selectedEl !== null) {
+      setPathInput(selectedEl.data.path);
+      setDescriptionInput(selectedEl.data.description);
+      setSelectedMethod(selectedEl.data.method);
+    }
+  }
+  useDidUpdateEffect(updateForm, selectedEl);
+
   const addNode = (e) => {
     e.preventDefault();
 
@@ -32,9 +42,7 @@ const Editor = ({ setElements, elements }) => {
       position: { x: 100, y: 100 },
       selected: false,
     };
-    console.log('before set elements', elements);
     setElements([...elements, node]);
-    console.log('after set elements', elements);
 
     setPathInput('');
     setDescriptionInput('');

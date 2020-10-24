@@ -24,41 +24,13 @@ const Shell = () => {
   const onElementClick = (event, element) => {
     setSelectedEl(element);
     setEnableDeleteBtn(false);
-    console.log(selectedEl);
   };
 
   const onPaneClick = (event) => {
     setEnableDeleteBtn(true);
   };
 
-  const onSelectionChange = (elementsToSelect) => {
-    const nodeToEdit = elementsToSelect;
-    console.log('this is the element to change', elementsToSelect);
-    const path = document.getElementById('path');
-    const method = document.getElementById('method');
-    const nodeType = document.getElementById('add-path-btn');
-    const description = document.getElementById('description');
-
-    // path.value = selectedEl.data.path;
-    // description.value = selectedEl.data.method;
-
-    // const node = {
-    //   id: `${method.innerText}-${elements.length + 1}`,
-    //   data: {
-    //     label: (
-    //       <>
-    //         <strong>
-    //           {method.innerText}: {path.value}
-    //         </strong>
-    //       </>
-    //     ),
-    //   },
-    //   method: method.innerText,
-    //   type: `${nodeType.getAttribute('data-value')}`,
-    //   position: { x: 100, y: 100 },
-    // };
-    // setElements([...elements, node]);
-  };
+  const onSelectionChange = (elementsToSelect) => {};
 
   return (
     <div className="flex h-screen overflow-hidden bg-white">
@@ -66,8 +38,10 @@ const Shell = () => {
         <div className="flex flex-col w-96">
           <Sidebar
             selectedEl={selectedEl}
+            setSelectedEl={setSelectedEl}
             elements={elements}
             setElements={setElements}
+            onSelectionChange={onSelectionChange}
           />
         </div>
       </div>
