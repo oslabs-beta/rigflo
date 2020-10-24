@@ -21,38 +21,6 @@ const Shell = () => {
   const onConnect = (params) =>
     setElements((elements) => addEdge(params, elements));
 
-  const addNode = (e) => {
-    e.preventDefault();
-
-    const path = document.getElementById('path');
-    const method = document.getElementById('method');
-    const nodeType = document.getElementById('add-path-btn');
-    const description = document.getElementById('description');
-
-    const node = {
-      id: `${method.innerText}-${elements.length + 1}`,
-      data: {
-        label: (
-          <>
-            <strong>
-              {method.innerText}: {path.value}
-            </strong>
-          </>
-        ),
-        method: method.innerText,
-        path: path.value,
-        description: description.value,
-      },
-      type: `${nodeType.getAttribute('data-value')}`,
-      position: { x: 100, y: 100 },
-      selected: false,
-    };
-    setElements([...elements, node]);
-
-    path.value = '';
-    description.value = '';
-  };
-
   const onElementClick = (event, element) => {
     setSelectedEl(element);
     setEnableDeleteBtn(false);
@@ -96,7 +64,11 @@ const Shell = () => {
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-96">
-          <Sidebar selectedEl={selectedEl} addNode={addNode} />
+          <Sidebar
+            selectedEl={selectedEl}
+            elements={elements}
+            setElements={setElements}
+          />
         </div>
       </div>
       <div className="flex flex-col flex-1 w-0 overflow-hidden">

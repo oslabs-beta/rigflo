@@ -4,10 +4,42 @@ import SelectMethod from './SelectMethod';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
 
-const Editor = ({ addNode }) => {
+const Editor = ({ setElements, elements }) => {
+  const initialMethod = 'Select a method';
   const [pathInput, setPathInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
-  const [selectedMethod, setSelectedMethod] = useState('Select a method');
+  const [selectedMethod, setSelectedMethod] = useState(initialMethod);
+
+  console.log(elements);
+  const addNode = (e) => {
+    e.preventDefault();
+
+    const node = {
+      id: `${selectedMethod}-${elements.length + 1}`,
+      data: {
+        label: (
+          <>
+            <strong>
+              {selectedMethod}: {pathInput}
+            </strong>
+          </>
+        ),
+        method: selectedMethod,
+        path: pathInput,
+        description: descriptionInput,
+      },
+      type: `pathNode`,
+      position: { x: 100, y: 100 },
+      selected: false,
+    };
+    console.log('before set elements', elements);
+    setElements([...elements, node]);
+    console.log('after set elements', elements);
+
+    setPathInput('');
+    setDescriptionInput('');
+    setSelectedMethod(initialMethod);
+  };
 
   return (
     <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
