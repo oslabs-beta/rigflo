@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Path from './Path';
 import SelectMethod from './SelectMethod';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
 
-export default function Editor({ addNode }) {
+const Editor = ({ addNode }) => {
+  const [pathInput, setPathInput] = useState('');
+  const [descriptionInput, setDescriptionInput] = useState('');
+  const [selectedMethod, setSelectedMethod] = useState('Select a method');
+
   return (
     <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
       <form>
@@ -18,13 +22,21 @@ export default function Editor({ addNode }) {
                 Enter basic request information
               </p>
             </div>
-            <Path />
-            <SelectMethod />
-            <Description />
+            <Path pathInput={pathInput} setPathInput={setPathInput} />
+            <SelectMethod
+              selectedMethod={selectedMethod}
+              setSelectedMethod={setSelectedMethod}
+            />
+            <Description
+              descriptionInput={descriptionInput}
+              setDescriptionInput={setDescriptionInput}
+            />
             <AddPathBtn addNode={addNode} />
           </div>
         </div>
       </form>
     </div>
   );
-}
+};
+
+export default Editor;

@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Path = () => {
+const Path = ({ setPathInput, pathInput }) => {
+  const onPathInputChange = (event) => {
+    setPathInput(event.target.value);
+  };
   return (
     <div className="mt-6 sm:mt-5">
       <div>
@@ -18,6 +21,8 @@ const Path = () => {
             id="path"
             className="flex-1 block w-full px-3 py-2 rounded-none form-input rounded-r-md sm:text-sm sm:leading-5"
             placeholder="pets"
+            value={pathInput}
+            onChange={onPathInputChange}
           />
         </div>
       </div>

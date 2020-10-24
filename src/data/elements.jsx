@@ -6,7 +6,7 @@ export default [
     data: {
       label: (
         <>
-          Welcome to <strong>React Flow!</strong>
+          <strong>Root</strong>
         </>
       ),
     },
