@@ -20,7 +20,6 @@ const Canvas = (props) => {
     onElementsRemove,
     onElementClick,
     onConnect,
-    enableDeleteBtn,
     onSelectionChange,
     onPaneClick,
   } = props;
