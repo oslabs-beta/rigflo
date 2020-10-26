@@ -44,32 +44,15 @@ const Sidebar = ({
             </svg>
             Dashboard
           </a>
-
-          <Menu>
-            <Menu.Button>Editor</Menu.Button>
-            <Menu.Items>
-              <Menu.Item>
-                {({ active }) => (
-                  <Editor
-                    addNode={addNode}
-                    elements={elements}
-                    setElements={setElements}
-                    selectedEl={selectedEl}
-                    setSelectedEl={setSelectedEl}
-                    handleRemoveElements={handleRemoveElements}
-                  />
-                )}
-              </Menu.Item>
-            </Menu.Items>
-          </Menu>
-          <Menu>
-            <Menu.Button>Inspector</Menu.Button>
-            <Menu.Items>
-              <Menu.Item>
-                {({ active }) => <Inspector selectedEl={selectedEl} />}
-              </Menu.Item>
-            </Menu.Items>
-          </Menu>
+          <Editor
+            addNode={addNode}
+            elements={elements}
+            setElements={setElements}
+            selectedEl={selectedEl}
+            setSelectedEl={setSelectedEl}
+            handleRemoveElements={handleRemoveElements}
+          />
+          <Inspector selectedEl={selectedEl} />
         </nav>
         {/* <Avatar /> */}
       </div>
