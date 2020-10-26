@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "dev:snowpack": "snowpack dev",
-    "dev:ws": "nodemon ./parser/server/index.js",
+    "dev:ws": "nodemon ./server/index.js",
     "dev:electron": "wait-on http://localhost:8080 && electron .",
     "start": "npm-run-all build:tailwind --parallel watch:tailwind dev:snowpack",
     "prebuild": "run-s build:tailwind",

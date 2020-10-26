@@ -1,5 +1,8 @@
-class OASDocument {
+const SocketRPC = require('./SocketRPC');
+
+class OASDocument extends SocketRPC {
   constructor(obj) {
+    super(9999);
     if (obj.openapi !== '3.0.0')
       throw new Error('unsupported OpenAPI version.');
     this.object = obj;
@@ -10,10 +13,16 @@ class OASDocument {
     this.components = new Components(this, obj.components);
   }
 
+  // TODO
+  // /** Loads a document from the filesystem */
+  // load() {
+
+  // }
+
   /** Get a list of paths */
   getPaths() {
     // TODO: fix this
-    return this.paths.paths;
+    return this.object.paths;
   }
 
   /** Get a list of schemas  */
