@@ -1,4 +1,4 @@
-export class OASDocument {
+class OASDocument {
   constructor(obj) {
     if (obj.openapi !== '3.0.0')
       throw new Error('unsupported OpenAPI version.');
@@ -6,13 +6,14 @@ export class OASDocument {
 
     this.info = obj.info;
     this.server = obj.servers;
-    this.paths = new Paths(obj.paths);
-    this.components = new Components(obj.components);
+    this.paths = new Paths(this, obj.paths);
+    this.components = new Components(this, obj.components);
   }
 
   /** Get a list of paths */
-  paths() {
-    return this.paths;
+  getPaths() {
+    // TODO: fix this
+    return this.paths.paths;
   }
 
   /** Get a list of schemas  */
@@ -47,7 +48,7 @@ class Paths extends OASDocumentProxy {
     super(document, pathsObj);
     this.paths = Object.entries(pathsObj).reduce(
       (obj, [pathname, methods]) => ({
-        [pathname]: new Path(methods),
+        [pathname]: new Path(this.root, methods),
         ...obj,
       }),
       {},
@@ -80,3 +81,7 @@ class Schemas extends OASDocumentProxy {
     this.object = schemasObject;
   }
 }
+
+module.exports = {
+  OASDocument,
+};

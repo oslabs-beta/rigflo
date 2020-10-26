@@ -5,32 +5,37 @@ const path = require('path');
 const { OASDocument } = require('..');
 
 const data = yaml.safeLoad(
-  fs.readFileSync(path.join(__dirname, '/parser/data/petstore.yaml'), 'utf8'),
+  fs.readFileSync(path.resolve('parser/data/petstore.yaml'), 'utf8'),
 );
 
 const document = new OASDocument(data);
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 9999 });
 
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(data) {
+wss.on('connection', function connection(socket) {
+  socket.on('message', function (data) {
     try {
-      const response = handleMessage(data);
-      ws.send(JSON.stringify(response));
+      const { payload } = JSON.parse(data);
+      const response = handleMessage(payload);
+      socket.send(JSON.stringify(response));
     } catch (err) {
-      ws.send(JSON.stringify({ error: err }));
+      console.log(err);
+      socket.send(JSON.stringify({ error: err }));
     }
   });
 });
 
-function handleMessage(data) {
-  const { id, payload } = JSON.parse(data);
+function handleMessage(payload) {
+  console.log('[WS Server] 🔔 recieved message:', payload);
   const [fn, ...args] = payload;
-
-  // execute the operation
+  // Make sure the method exists
+  if (!document[fn])
+    return {
+      error: new Error(`method ${fn} is not defined on the document`),
+    };
+  // Execute the method with the arguments and return the result
   const result = document[fn](args);
   return {
-    id,
     payload: result,
   };
 }

@@ -1,6 +1,12 @@
 {
   "root": true,
-  "extends": ["problems", "prettier"],
+  "extends": [
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "problems",
+    "prettier"
+  ],
+  "plugins": ["react", "react-hooks"],
   "env": {
     "browser": true,
     "node": true,
@@ -8,7 +14,10 @@
   },
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "no-console": "off",
