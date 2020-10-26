@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 
+import ServerNode from './nodes/ServerNode';
+import PathNode from './nodes/PathNode';
+
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
   reactFlowInstance.fitView();
+};
+
+const nodeTypes = {
+  serverNode: ServerNode,
+  pathNode: PathNode,
 };
 
 const Canvas = (props) => {
@@ -12,19 +20,24 @@ const Canvas = (props) => {
     onElementsRemove,
     onElementClick,
     onConnect,
-    addNode,
+    enableDeleteBtn,
+    onSelectionChange,
+    onPaneClick,
   } = props;
+
   return (
     <>
-      <button onClick={addNode}>Add node</button>
       <ReactFlow
         elements={elements}
         onElementsRemove={onElementsRemove}
+        onSelectionChange={onSelectionChange}
         onConnect={onConnect}
         onLoad={onLoad}
         snapToGrid={true}
         snapGrid={[15, 15]}
         onElementClick={onElementClick}
+        nodeTypes={nodeTypes}
+        onPaneClick={onPaneClick}
       >
         <Background variant="dots" gap={12} size={0.5} />
         <Controls style={{ bottom: '150px' }} />
