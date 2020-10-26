@@ -11,6 +11,7 @@ dependencies:
   react-json-pretty: 2.2.0_react-dom@16.14.0+react@16.14.0
   tailwindcss: 1.9.5
   wait-on: 5.2.0
+  ws: 7.3.1
 devDependencies:
   '@babel/preset-react': 7.12.1
   '@snowpack/app-scripts-react': 1.12.4_ff99f91c1ae38c102c15355316b7b19e
@@ -8532,7 +8533,6 @@ packages:
     resolution:
       integrity: sha512-/lg70HAjtkUgWPVZhZcm+T4hkL8Zbtp1nFNOn3lRrxnlv50SRBv7cR7RqR+GMsd3hUXy9hWBo4CHTbFTcOYwig==
   /ws/7.3.1:
-    dev: true
     engines:
       node: '>=8.3.0'
     peerDependencies:
@@ -8673,3 +8673,4 @@ specifiers:
   tailwindcss: 1.9.5
   typescript: ^4.0.0
   wait-on: 5.2.0
+  ws: ^7.3.1

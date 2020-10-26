@@ -46,6 +46,5 @@ function Server(obj) {
   return validate.object(obj, {
     url: RequiredString,
     description: { type: String },
-    // variables:
   });
 }
