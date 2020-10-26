@@ -3,8 +3,11 @@ import { Listbox, Transition } from '@headlessui/react';
 
 const methods = ['GET', 'PUT', 'POST', 'DELETE'];
 
-const SelectMethod = () => {
-  const [selectedMethod, setSelectedMethod] = useState(methods[0]);
+const SelectMethod = ({ selectedMethod, setSelectedMethod }) => {
+  function onSelectChange(event) {
+    console.log('METHOD CHANGE', event);
+    setSelectedMethod(event);
+  }
 
   return (
     <div className="mt-6 sm:mt-5">
@@ -13,7 +16,7 @@ const SelectMethod = () => {
           as="div"
           className="space-y-1"
           value={selectedMethod}
-          onChange={setSelectedMethod}
+          onChange={onSelectChange}
         >
           {({ open }) => (
             <>

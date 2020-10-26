@@ -6,11 +6,12 @@ export default [
     data: {
       label: (
         <>
-          Welcome to <strong>React Flow!</strong>
+          <strong>Root</strong>
         </>
       ),
     },
     position: { x: 250, y: 0 },
+    selected: false,
   },
   // {
   //   id: '2',

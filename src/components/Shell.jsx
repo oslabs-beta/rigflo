@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import { removeElements, addEdge } from 'react-flow-renderer';
 import Sidebar from './Sidebar';
 import Canvas from './Canvas';
-
-import { removeElements, addEdge } from 'react-flow-renderer';
 
 import initialElements from '../data/elements.js';
 
@@ -10,55 +9,42 @@ const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
   const [enableDeleteBtn, setEnableDeleteBtn] = useState(true);
-  // console.log({ selectedEl });
+  console.log(elements);
 
   const handleRemoveElements = () => {
-    console.log(selectedEl);
     setElements((elements) => {
       const returnedElements = removeElements([selectedEl], elements);
-      console.log({ returnedElements });
       return returnedElements;
     });
+    setEnableDeleteBtn(true);
   };
 
   const onConnect = (params) =>
     setElements((elements) => addEdge(params, elements));
-
-  const addNode = (e) => {
-    e.preventDefault();
-
-    const path = document.getElementById('path');
-    const method = document.getElementById('method');
-    const nodeType = document.getElementById('add-path-btn');
-
-    const node = {
-      id: `${elements.length + 1}`,
-      data: {
-        label: (
-          <>
-            <strong>{path.value}</strong>
-          </>
-        ),
-        title: `${method.innerText}: ${path.value}`,
-      },
-      method: method.innerText,
-      type: `${nodeType.getAttribute('data-value')}`,
-
-      position: { x: 100, y: 100 },
-    };
-    setElements([...elements, node]);
-  };
 
   const onElementClick = (event, element) => {
     setSelectedEl(element);
     setEnableDeleteBtn(false);
   };
 
+  const onPaneClick = (event) => {
+    setEnableDeleteBtn(true);
+  };
+
+  const onSelectionChange = (elementsToSelect) => {};
+
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-96">
-          <Sidebar selectedEl={selectedEl} addNode={addNode} />
+          <Sidebar
+            selectedEl={selectedEl}
+            setSelectedEl={setSelectedEl}
+            elements={elements}
+            setElements={setElements}
+            onSelectionChange={onSelectionChange}
+            handleRemoveElements={handleRemoveElements}
+          />
         </div>
       </div>
       <div className="flex flex-col flex-1 w-0 overflow-hidden">
@@ -104,6 +90,9 @@ const Shell = () => {
                     onConnect={onConnect}
                     onElementClick={onElementClick}
                     enableDeleteBtn={enableDeleteBtn}
+                    onPaneClick={onPaneClick}
+                    selectedEl={selectedEl}
+                    onSelectionChange={onSelectionChange}
                   />
                 </div>
               </div>

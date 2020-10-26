@@ -9,7 +9,7 @@ export default memo(({ data }) => {
         // style={{ background: '#555' }}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-      <div>{data.title}</div>
+      <div>{data.label}</div>
       <Handle
         type="source"
         position="bottom"
