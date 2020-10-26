@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function useDidUpdateEffect(fn, inputs) {
   const didMountRef = useRef(false);
@@ -6,5 +6,5 @@ export default function useDidUpdateEffect(fn, inputs) {
   useEffect(() => {
     if (didMountRef.current) fn();
     else didMountRef.current = true;
-  }, inputs);
+  }, [fn, inputs]);
 }
