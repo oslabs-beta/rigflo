@@ -8,7 +8,6 @@ import initialElements from '../data/elements.js';
 const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
-  const [enableDeleteBtn, setEnableDeleteBtn] = useState(true);
   console.log(elements);
 
   const handleRemoveElements = () => {
@@ -16,7 +15,6 @@ const Shell = () => {
       const returnedElements = removeElements([selectedEl], elements);
       return returnedElements;
     });
-    setEnableDeleteBtn(true);
   };
 
   const onConnect = (params) =>
@@ -24,11 +22,10 @@ const Shell = () => {
 
   const onElementClick = (event, element) => {
     setSelectedEl(element);
-    setEnableDeleteBtn(false);
   };
 
   const onPaneClick = (event) => {
-    setEnableDeleteBtn(true);
+    //logic for when the canvas is clicked
   };
 
   const onSelectionChange = (elementsToSelect) => {};
@@ -89,7 +86,6 @@ const Shell = () => {
                     onElementsRemove={handleRemoveElements}
                     onConnect={onConnect}
                     onElementClick={onElementClick}
-                    enableDeleteBtn={enableDeleteBtn}
                     onPaneClick={onPaneClick}
                     selectedEl={selectedEl}
                     onSelectionChange={onSelectionChange}
