@@ -1,14 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 
-const methods = ['GET', 'PUT', 'POST', 'DELETE'];
+// TODO: clean up this file
 
-const SelectMethod = ({ selectedMethod, setSelectedMethod }) => {
-  function onSelectChange(event) {
-    console.log('METHOD CHANGE', event);
-    setSelectedMethod(event);
-  }
+const MethodOptions = () =>
+  ['GET', 'PUT', 'POST', 'DELETE'].map((method) => (
+    <Listbox.Option key={method} value={method}>
+      {({ selected, active }) => (
+        <div
+          className={`${
+            active ? 'text-white bg-blue-600' : 'text-gray-900'
+          } cursor-default select-none relative py-2 pl-8 pr-4`}
+        >
+          <span
+            className={`block truncate ${
+              selected ? 'font-semibold' : 'font-normal'
+            }`}
+          >
+            {method}
+          </span>
+          {selected && (
+            <span
+              className={`${
+                active ? 'text-white' : 'text-blue-600'
+              } absolute inset-y-0 left-0 flex items-center pl-1.5`}
+            >
+              <svg
+                className="w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          )}
+        </div>
+      )}
+    </Listbox.Option>
+  ));
 
+const MethodSelect = ({ selectedMethod, setSelectedMethod }) => {
   return (
     <div className="mt-6 sm:mt-5">
       <div className="space-y-1">
@@ -16,7 +52,7 @@ const SelectMethod = ({ selectedMethod, setSelectedMethod }) => {
           as="div"
           className="space-y-1"
           value={selectedMethod}
-          onChange={onSelectChange}
+          onChange={setSelectedMethod}
         >
           {({ open }) => (
             <>
@@ -58,47 +94,7 @@ const SelectMethod = ({ selectedMethod, setSelectedMethod }) => {
                     static
                     className="py-1 overflow-auto text-base leading-6 rounded-md shadow-xs max-h-60 focus:outline-none sm:text-sm sm:leading-5"
                   >
-                    {methods.map((method) => (
-                      <Listbox.Option key={method} value={method}>
-                        {({ selected, active }) => (
-                          <div
-                            className={`${
-                              active
-                                ? 'text-white bg-blue-600'
-                                : 'text-gray-900'
-                            } cursor-default select-none relative py-2 pl-8 pr-4`}
-                          >
-                            <span
-                              className={`${
-                                selected ? 'font-semibold' : 'font-normal'
-                              } block truncate`}
-                            >
-                              {method}
-                            </span>
-                            {selected && (
-                              <span
-                                className={`${
-                                  active ? 'text-white' : 'text-blue-600'
-                                } absolute inset-y-0 left-0 flex items-center pl-1.5`}
-                              >
-                                <svg
-                                  className="w-5 h-5"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </span>
-                            )}
-                          </div>
-                        )}
-                      </Listbox.Option>
-                    ))}
+                    <MethodOptions />
                   </Listbox.Options>
                 </Transition>
               </div>
@@ -110,4 +106,4 @@ const SelectMethod = ({ selectedMethod, setSelectedMethod }) => {
   );
 };
 
-export default SelectMethod;
+export default MethodSelect;

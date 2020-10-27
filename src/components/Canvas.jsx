@@ -17,22 +17,32 @@ const nodeTypes = {
   pathNode: PathNode,
 };
 
-const Canvas = (props) => {
-  const {
-    elements,
-    onElementsRemove,
-    onElementClick,
-    onConnect,
-    onSelectionChange,
-    onPaneClick,
-  } = props;
-
+const Canvas = ({
+  elements,
+  onElementsRemove,
+  onElementClick,
+  onConnect,
+  onSelectionChange,
+  onPaneClick,
+}) => {
   const saveYAML = async () => {
     console.log({ doc });
     // await doc.isReady;
     const json = await doc.toYAML(elements);
     console.log(json);
   };
+
+  const getMiniMapNodeStrokeColor = (node) => {
+    const nodeColors = {
+      input: '#0041d0',
+      pathNode: 'green',
+      output: '#ff0072',
+      default: '#1a192b',
+    };
+    return nodeColors[node.type] || node.style?.background || '#eee';
+  };
+
+  const getMiniMapNodeColor = (node) => node.style?.background || '#fff';
 
   return (
     <>
@@ -52,17 +62,9 @@ const Canvas = (props) => {
         <Background variant="dots" gap={12} size={0.5} />
         <Controls style={{ bottom: '150px' }} />
         <MiniMap
-          nodeStrokeColor={(n) => {
-            if (n.style?.background) return n.style.background;
-            if (n.type === 'input') return '#0041d0';
-            if (n.type === 'output') return '#ff0072';
-            if (n.type === 'default') return '#1a192b';
-            return '#eee';
-          }}
-          nodeColor={(n) => {
-            if (n.style?.background) return n.style.background;
-            return '#fff';
-          }}
+          style={{ marginBottom: 100 }}
+          nodeStrokeColor={getMiniMapNodeStrokeColor}
+          nodeColor={getMiniMapNodeColor}
           borderRadius={2}
         />
       </ReactFlow>

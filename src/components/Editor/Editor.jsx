@@ -1,32 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Transition } from '@headlessui/react';
 import { PencilAlt } from 'heroicons-react';
 
 import Path from './Path';
-import SelectMethod from './SelectMethod';
+import MethodSelect from './MethodSelect';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
-
-import useDidUpdateEffect from '../../hooks/useDidUpdateEffect';
 
 const Editor = ({
   setElements,
   elements,
   selectedEl,
-  setSelectedEl,
   handleRemoveElements,
 }) => {
   const initialMethod = 'Select a method';
+  // ! LOCAL STATE: Could use something like MobX to simplify this and make it more readable
   const [pathInput, setPathInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [selectedMethod, setSelectedMethod] = useState(initialMethod);
   const [isOpen, setIsOpen] = useState(false);
 
-  const updateNode = (e) => {
-    e && e.preventDefault();
-    const newElements = elements.map((element) => {
-      if (element.id === selectedEl.id) {
-        const updatedElement = {
+  const updateNode = useCallback(
+    (e) => {
+      e && e.preventDefault();
+      // ! For updating nodes, could take the logic out into a utils file, so that we can reuse it
+      const newElements = elements.map((element) => {
+        if (element.id !== selectedEl.id) return element;
+
+        return {
           ...element,
           data: {
             label: (
@@ -42,28 +43,21 @@ const Editor = ({
             title: `${selectedMethod}: ${pathInput}`,
           },
         };
-        return updatedElement;
-      }
-      return element;
-    });
-    console.log({ newElements });
-    setElements(newElements);
-    console.log({ elements });
-  };
-
-  // const editor = useRef(null);
-  // ``;
-
-  // function updateForm() {
-  //   if (selectedEl !== null) {
-  //     setPathInput(selectedEl.data.path);
-  //     setDescriptionInput(selectedEl.data.description);
-  //     setSelectedMethod(selectedEl.data.method);
-  //   }
-  // }
-  // const editor = useDidUpdateEffect(updateForm, [selectedEl]);
+      });
+      setElements(newElements);
+    },
+    [
+      selectedMethod,
+      descriptionInput,
+      pathInput,
+      elements,
+      setElements,
+      selectedEl,
+    ],
+  );
 
   // Set the form input boxes to the data of a node when it is selected
+  // ! See line 17, this may change depending on what happens with that
   useEffect(() => {
     if (selectedEl === null) return;
     setPathInput(selectedEl.data.path);
@@ -74,13 +68,12 @@ const Editor = ({
   // update the node in the elements list when a form value is changed
   useEffect(() => {
     selectedEl && updateNode();
-  }, [pathInput, descriptionInput, selectedMethod]);
+  }, [updateNode, selectedEl, pathInput, descriptionInput, selectedMethod]);
 
   const addNode = (e) => {
     e.preventDefault();
 
     const node = {
-      // id: `${selectedMethod}-${elements.length + 1}`,
       id: `${Date.now()}`,
       data: {
         label: (
@@ -100,16 +93,17 @@ const Editor = ({
     };
     setElements([...elements, node]);
 
+    // Clear form input
     setPathInput('');
     setDescriptionInput('');
     setSelectedMethod(initialMethod);
   };
 
-  function test() {
-    const height = editor.current.clientHeight;
-    height += 20;
-    return `${height}px`;
-  }
+  // function test() {
+  //   const height = editor.current.clientHeight;
+  //   height += 20;
+  //   return `${height}px`;
+  // }
 
   return (
     <div className="flow-root">
@@ -136,7 +130,7 @@ const Editor = ({
                   </p>
                 </div>
                 <Path pathInput={pathInput} setPathInput={setPathInput} />
-                <SelectMethod
+                <MethodSelect
                   selectedMethod={selectedMethod}
                   setSelectedMethod={setSelectedMethod}
                 />

@@ -32,7 +32,9 @@ module.exports = class SocketRPC {
   onSocketOpen() {}
 
   /** @param {WebSocket.Event} event */
-  onSocketClose() {}
+  onSocketClose() {
+    this.log('👋 client disconnected');
+  }
 
   /** @param {Error} event */
   onSocketError(error) {

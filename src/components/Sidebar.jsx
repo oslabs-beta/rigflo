@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Inspector from './Inspector';
 import Editor from './Editor/Editor';
-import Avatar from './Avatar';
-import { Menu } from '@headlessui/react';
 
 const Sidebar = ({
   selectedEl,

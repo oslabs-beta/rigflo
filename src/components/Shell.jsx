@@ -3,27 +3,14 @@ import { removeElements, addEdge } from 'react-flow-renderer';
 import Sidebar from './Sidebar';
 import Canvas from './Canvas';
 
+// ! This is gonna go
 import initialElements from '../data/elements.js';
 
 const Shell = () => {
+  // ! GLOBAL STATE
   const [elements, setElements] = useState(initialElements);
+  // ! GLOBAL STATE
   const [selectedEl, setSelectedEl] = useState(null);
-  // const [document] = useState(new OASDocument());
-
-  // const elements = useMemo(() => {
-  //   // generate elements from document
-  // }, [document]);
-
-  // // onAddNode
-  // function addNode(type, data) {
-  //   switch (type) {
-  //     case 'path':
-  //       document.addPath(data);
-  //       break;
-  //   }
-  // }
-
-  // console.log(elements);
 
   const handleRemoveElements = () => {
     setElements((elements) => {
@@ -32,19 +19,21 @@ const Shell = () => {
     });
   };
 
-  const onConnect = (params) =>
+  const onConnect = (params) => {
     setElements((elements) => addEdge(params, elements));
+  };
 
   const onElementClick = (event, element) => {
     setSelectedEl(element);
   };
 
-  const onPaneClick = (event) => {
-    //logic for when the canvas is clicked
+  // logic for when the canvas is clicked
+  const onPaneClick = () => {
     setSelectedEl(null);
   };
 
-  const onSelectionChange = (elementsToSelect) => {};
+  // Was going to use this but ended up not using it for now
+  // const onSelectionChange = (elementsToSelect) => {};
 
   return (
     <div className="flex h-screen overflow-hidden bg-white">
@@ -55,7 +44,7 @@ const Shell = () => {
             setSelectedEl={setSelectedEl}
             elements={elements}
             setElements={setElements}
-            onSelectionChange={onSelectionChange}
+            // onSelectionChange={onSelectionChange}
             handleRemoveElements={handleRemoveElements}
           />
         </div>
@@ -104,7 +93,7 @@ const Shell = () => {
                     onElementClick={onElementClick}
                     onPaneClick={onPaneClick}
                     selectedEl={selectedEl}
-                    onSelectionChange={onSelectionChange}
+                    // onSelectionChange={onSelectionChange}
                   />
                 </div>
               </div>
