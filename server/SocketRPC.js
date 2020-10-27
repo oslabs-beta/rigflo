@@ -14,11 +14,10 @@ module.exports = class SocketRPC {
 
   onConnection(socket) {
     this.log('✨ client connected');
-    socket
-      .on('open', this.onSocketOpen.bind(this))
-      .on('close', this.onSocketClose.bind(this))
-      .on('error', this.onSocketError.bind(this))
-      .on('message', this.onSocketMessage.bind(this, socket));
+    socket.on('open', this.onSocketOpen.bind(this));
+    socket.on('close', this.onSocketClose.bind(this));
+    socket.on('error', this.onSocketError.bind(this));
+    socket.on('message', this.onSocketMessage.bind(this, socket));
   }
 
   onError(error) {

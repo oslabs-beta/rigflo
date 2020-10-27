@@ -9,6 +9,9 @@ export default [
           <strong>Root</strong>
         </>
       ),
+      method: 'GET',
+      path: '/',
+      description: 'root',
     },
     position: { x: 250, y: 0 },
     selected: false,

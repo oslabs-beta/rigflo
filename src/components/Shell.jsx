@@ -8,7 +8,22 @@ import initialElements from '../data/elements.js';
 const Shell = () => {
   const [elements, setElements] = useState(initialElements);
   const [selectedEl, setSelectedEl] = useState(null);
-  console.log(elements);
+  // const [document] = useState(new OASDocument());
+
+  // const elements = useMemo(() => {
+  //   // generate elements from document
+  // }, [document]);
+
+  // // onAddNode
+  // function addNode(type, data) {
+  //   switch (type) {
+  //     case 'path':
+  //       document.addPath(data);
+  //       break;
+  //   }
+  // }
+
+  // console.log(elements);
 
   const handleRemoveElements = () => {
     setElements((elements) => {
@@ -26,6 +41,7 @@ const Shell = () => {
 
   const onPaneClick = (event) => {
     //logic for when the canvas is clicked
+    setSelectedEl(null);
   };
 
   const onSelectionChange = (elementsToSelect) => {};

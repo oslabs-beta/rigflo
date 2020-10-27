@@ -3,6 +3,9 @@ import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 
 import ServerNode from './nodes/ServerNode';
 import PathNode from './nodes/PathNode';
+import { OASDocumentClient } from '../services/document';
+
+const doc = new OASDocumentClient();
 
 const onLoad = (reactFlowInstance) => {
   console.log('flow loaded:', reactFlowInstance);
@@ -24,8 +27,16 @@ const Canvas = (props) => {
     onPaneClick,
   } = props;
 
+  const saveYAML = async () => {
+    console.log({ doc });
+    // await doc.isReady;
+    const json = await doc.toYAML(elements);
+    console.log(json);
+  };
+
   return (
     <>
+      <button onClick={saveYAML}>Save YAML</button>
       <ReactFlow
         elements={elements}
         onElementsRemove={onElementsRemove}

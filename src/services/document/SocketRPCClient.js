@@ -29,6 +29,7 @@ export class SocketRPCClient {
     const message = this.packMessage([method, ...args]);
     return new Promise((resolve, reject) => {
       this.pendingMessages.push({ resolve, reject });
+      console.log('Sending message: ', message);
       this.ws.send(message);
     });
   }
