@@ -13,6 +13,55 @@ class OASDocument extends SocketRPC {
     this.components = new Components(this, obj.components);
   }
 
+  toYAML(elements) {
+    const isEdge = (el) => el.source || el.target;
+
+    const edges = [];
+    const nodes = [];
+
+    // Sort the nodes and edges
+    elements.forEach((el) => (isEdge(el) ? edges : nodes).push(el));
+
+    // Connect the nodes to get this:
+    /* 
+      {
+        paths: {
+          'pathName': {
+            method: 'GET',
+            description: 'such a cool path',
+            paths: {
+              'subPathName': {
+                method: 'GET',
+                description: 'such a cool path',
+              }
+            }
+          }
+        }
+      }
+    */
+
+    // Format the path nodes
+    nodes.forEach(({ id, type, data: { path, method, description } }, i) => {
+      nodes[i] = { id, type, path, method, description, paths: {} };
+    });
+
+    console.log('NODES', nodes);
+    console.log('EDGES', edges);
+
+    // Connect all the edges
+    edges.forEach(({ source, target }) => {
+      // Find the source and target nodes
+      const sourceNode = nodes.find((n) => n.id === source);
+      const targetNode = nodes.find((n) => n.id === target);
+
+      // Note: this only works if every target has exactly one source
+      sourceNode.paths[targetNode.path] = targetNode;
+    });
+
+    const root = nodes.find((n) => n.type === 'input');
+    return root;
+  }
+
   // TODO
   // /** Loads a document from the filesystem */
   // load() {

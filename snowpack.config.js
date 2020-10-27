@@ -17,7 +17,10 @@ module.exports = {
     /* ... */
   },
   proxy: {
-    '/api': 'ws://localhost:9999',
+    '/api': {
+      target: 'ws://localhost:9999',
+      ws: true,
+    },
   },
   alias: {
     /* ... */
