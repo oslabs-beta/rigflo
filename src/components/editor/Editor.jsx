@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { PencilAlt } from 'heroicons-react';
 
@@ -6,13 +6,9 @@ import Path from './Path';
 import MethodSelect from './MethodSelect';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
+import { useSelection } from '../../hooks/useSelection';
 
-const Editor = ({
-  setElements,
-  elements,
-  selectedEl,
-  handleRemoveElements,
-}) => {
+const Editor = ({ setElements, elements, onElementsRemove }) => {
   const initialMethod = 'Select a method';
   // ! LOCAL STATE: Could use something like MobX to simplify this and make it more readable
   const [pathInput, setPathInput] = useState('');
@@ -20,55 +16,62 @@ const Editor = ({
   const [selectedMethod, setSelectedMethod] = useState(initialMethod);
   const [isOpen, setIsOpen] = useState(false);
 
-  const updateNode = useCallback(
-    (e) => {
-      e && e.preventDefault();
-      // ! For updating nodes, could take the logic out into a utils file, so that we can reuse it
-      const newElements = elements.map((element) => {
-        if (element.id !== selectedEl.id) return element;
+  const [selection] = useSelection();
+  const selectedEl = selection[0];
 
-        return {
-          ...element,
-          data: {
-            label: (
-              <>
-                <strong>
-                  {selectedMethod}: {pathInput}
-                </strong>
-              </>
-            ),
-            path: pathInput,
-            description: descriptionInput,
-            method: selectedMethod,
-            title: `${selectedMethod}: ${pathInput}`,
-          },
-        };
-      });
-      setElements(newElements);
-    },
-    [
-      selectedMethod,
-      descriptionInput,
-      pathInput,
-      elements,
-      setElements,
-      selectedEl,
-    ],
-  );
+  // update the node in the elements list when a form value is changed
+  // useEffect(() => {
+  //   if (!selectedEl) return;
+  //   // ! For updating nodes, could take the logic out into a utils file, so that we can reuse it
+  //   const newElements = elements.map((element) => {
+  //     if (element.id !== selectedEl.id) return element;
 
+  //     return {
+  //       ...element,
+  //       data: {
+  //         label: `${selectedMethod}: ${pathInput}`,
+  //         path: pathInput,
+  //         description: descriptionInput,
+  //         method: selectedMethod,
+  //         title: `${selectedMethod}: ${pathInput}`,
+  //       },
+  //     };
+  //   });
+  //   setElements(newElements);
+  // }, [
+  //   selectedEl,
+  //   selectedMethod,
+  //   descriptionInput,
+  //   pathInput,
+  //   elements,
+  //   setElements,
+  // ]);
+  const updateNode = () => {
+    // ! For updating nodes, could take the logic out into a utils file, so that we can reuse it
+    const newElements = elements.map((element) => {
+      if (element.id !== selectedEl.id) return element;
+
+      return {
+        ...element,
+        data: {
+          label: `${selectedMethod}: ${pathInput}`,
+          path: pathInput,
+          description: descriptionInput,
+          method: selectedMethod,
+          title: `${selectedMethod}: ${pathInput}`,
+        },
+      };
+    });
+    setElements(newElements);
+  };
   // Set the form input boxes to the data of a node when it is selected
   // ! See line 17, this may change depending on what happens with that
   useEffect(() => {
-    if (selectedEl === null) return;
+    if (!selectedEl) return;
     setPathInput(selectedEl.data.path);
     setDescriptionInput(selectedEl.data.description);
     setSelectedMethod(selectedEl.data.method);
   }, [selectedEl]);
-
-  // update the node in the elements list when a form value is changed
-  useEffect(() => {
-    selectedEl && updateNode();
-  }, [updateNode, selectedEl, pathInput, descriptionInput, selectedMethod]);
 
   const addNode = (e) => {
     e.preventDefault();
@@ -76,13 +79,7 @@ const Editor = ({
     const node = {
       id: `${Date.now()}`,
       data: {
-        label: (
-          <>
-            <strong>
-              {selectedMethod}: {pathInput}
-            </strong>
-          </>
-        ),
+        label: `${selectedMethod}: ${pathInput}`,
         method: selectedMethod,
         path: pathInput,
         description: descriptionInput,
@@ -99,12 +96,6 @@ const Editor = ({
     setSelectedMethod(initialMethod);
   };
 
-  // function test() {
-  //   const height = editor.current.clientHeight;
-  //   height += 20;
-  //   return `${height}px`;
-  // }
-
   return (
     <div className="flow-root">
       <a
@@ -118,7 +109,7 @@ const Editor = ({
       </a>
       <Transition show={isOpen} style={{ marginBottom: '440px' }}>
         <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
-          <form /*ref={editor}*/>
+          <form>
             <div className="px-2 mt-5 space-y-1">
               <div className="pt-8 mt-8 border-t border-gray-200 sm:mt-5 sm:pt-10">
                 <div>
@@ -149,7 +140,7 @@ const Editor = ({
                     </button>
                     <button
                       type="button"
-                      onClick={handleRemoveElements}
+                      onClick={onElementsRemove}
                       className="px-4 py-2 mt-4 text-red-700 bg-transparent border border-red-500 rounded mb-8font-semibold hover:bg-red-500 hover:text-white hover:border-transparent"
                     >
                       Delete selected node

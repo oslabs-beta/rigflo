@@ -3,10 +3,14 @@ import { Transition } from '@headlessui/react';
 import JSONPretty from 'react-json-pretty';
 import { Code } from 'heroicons-react';
 import 'react-json-pretty/themes/1337.css';
+import { useSelection } from '../hooks/useSelection';
 
 // ! selectedEl will be in global state instead of prop drilling it
-const Inspector = ({ selectedEl }) => {
+const Inspector = () => {
   const [isOpen, setIsOpen] = useState(true);
+
+  const [selection] = useSelection();
+  const selectedEl = selection[0];
 
   return (
     <div className="flow-root">

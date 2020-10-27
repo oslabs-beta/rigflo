@@ -16,9 +16,10 @@ dependencies:
   wait-on: 5.2.0
   ws: 7.3.1
 devDependencies:
+  '@babel/preset-react': 7.12.1
   '@snowpack/app-scripts-react': 1.12.4_ff99f91c1ae38c102c15355316b7b19e
   '@snowpack/plugin-dotenv': 2.0.4
-  '@snowpack/plugin-react-refresh': 2.3.3_react-dom@16.14.0+react@16.14.0
+  '@snowpack/plugin-react-refresh': 2.3.4_react-dom@16.14.0+react@16.14.0
   '@snowpack/web-test-runner-plugin': 0.1.3_0fb0b315653c1eb73248c6108bdfdd3d
   '@testing-library/react': 11.1.0_react-dom@16.14.0+react@16.14.0
   '@web/test-runner': 0.9.4
@@ -532,6 +533,14 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-lY6kdGpWHvjoe2vk4WrAapEuBR69EMxZl+RoGRhrFGNYVK8mOPAW8VfbT/ZgrFbXlDNiiaxQnAtgVCZ6jv30EA==
+  /@babel/plugin-syntax-jsx/7.12.1:
+    dependencies:
+      '@babel/helper-plugin-utils': 7.10.4
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-1yRi7yAtB0ETgxdY9ti/p2TivUxJkTdhu/ZbF9MshVGqOx1TdB3b7xCXs49Fupgg50N45KcAsRP/ZqWjs9SRjg==
   /@babel/plugin-syntax-jsx/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -916,6 +925,14 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-6MTCR/mZ1MQS+AwZLplX4cEySjCpnIF26ToWo942nqn8hXSm7McaHQNeGx/pt7suI1TWOWMfa/NgBhiqSnX0cQ==
+  /@babel/plugin-transform-react-display-name/7.12.1:
+    dependencies:
+      '@babel/helper-plugin-utils': 7.10.4
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-cAzB+UzBIrekfYxyLlFqf/OagTvHLcVBb5vpouzkYkBclRPraiygVnafvAoipErZLI8ANv8Ecn6E/m5qPXD26w==
   /@babel/plugin-transform-react-display-name/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -934,6 +951,16 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-3Jy/PCw8Fe6uBKtEgz3M82ljt+lTg+xJaM4og+eyu83qLT87ZUSckn0wy7r31jflURWLO83TW6Ylf7lyXj3m5A==
+  /@babel/plugin-transform-react-jsx-development/7.12.1:
+    dependencies:
+      '@babel/helper-builder-react-jsx-experimental': 7.12.4
+      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/plugin-syntax-jsx': 7.12.1
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-IilcGWdN1yNgEGOrB96jbTplRh+V2Pz1EoEwsKsHfX1a/L40cUYuD71Zepa7C+ujv7kJIxnDftWeZbKNEqZjCQ==
   /@babel/plugin-transform-react-jsx-development/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -956,6 +983,14 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-IilcGWdN1yNgEGOrB96jbTplRh+V2Pz1EoEwsKsHfX1a/L40cUYuD71Zepa7C+ujv7kJIxnDftWeZbKNEqZjCQ==
+  /@babel/plugin-transform-react-jsx-self/7.12.1:
+    dependencies:
+      '@babel/helper-plugin-utils': 7.10.4
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-FbpL0ieNWiiBB5tCldX17EtXgmzeEZjFrix72rQYeq9X6nUK38HCaxexzVQrZWXanxKJPKVVIU37gFjEQYkPkA==
   /@babel/plugin-transform-react-jsx-self/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -974,6 +1009,14 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-FbpL0ieNWiiBB5tCldX17EtXgmzeEZjFrix72rQYeq9X6nUK38HCaxexzVQrZWXanxKJPKVVIU37gFjEQYkPkA==
+  /@babel/plugin-transform-react-jsx-source/7.12.1:
+    dependencies:
+      '@babel/helper-plugin-utils': 7.10.4
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-keQ5kBfjJNRc6zZN1/nVHCd6LLIHq4aUKcVnvE/2l+ZZROSbqoiGFRtT5t3Is89XJxBQaP7NLZX2jgGHdZvvFQ==
   /@babel/plugin-transform-react-jsx-source/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -992,6 +1035,17 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-keQ5kBfjJNRc6zZN1/nVHCd6LLIHq4aUKcVnvE/2l+ZZROSbqoiGFRtT5t3Is89XJxBQaP7NLZX2jgGHdZvvFQ==
+  /@babel/plugin-transform-react-jsx/7.12.1:
+    dependencies:
+      '@babel/helper-builder-react-jsx': 7.10.4
+      '@babel/helper-builder-react-jsx-experimental': 7.12.4
+      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/plugin-syntax-jsx': 7.12.1
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-RmKejwnT0T0QzQUzcbP5p1VWlpnP8QHtdhEtLG55ZDQnJNalbF3eeDyu3dnGKvGzFIQiBzFhBYTwvv435p9Xpw==
   /@babel/plugin-transform-react-jsx/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -1016,6 +1070,15 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-RmKejwnT0T0QzQUzcbP5p1VWlpnP8QHtdhEtLG55ZDQnJNalbF3eeDyu3dnGKvGzFIQiBzFhBYTwvv435p9Xpw==
+  /@babel/plugin-transform-react-pure-annotations/7.12.1:
+    dependencies:
+      '@babel/helper-annotate-as-pure': 7.10.4
+      '@babel/helper-plugin-utils': 7.10.4
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-RqeaHiwZtphSIUZ5I85PEH19LOSzxfuEazoY7/pWASCAIBuATQzpSVD+eT6MebeeZT2F4eSL0u4vw6n4Nm0Mjg==
   /@babel/plugin-transform-react-pure-annotations/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -1216,6 +1279,20 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-J36NhwnfdzpmH41M1DrnkkgAqhZaqr/NBdPfQ677mLzlaXo+oDiv1deyCDtgAhz8p328otdob0Du7+xgHGZbKg==
+  /@babel/preset-react/7.12.1:
+    dependencies:
+      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/plugin-transform-react-display-name': 7.12.1
+      '@babel/plugin-transform-react-jsx': 7.12.1
+      '@babel/plugin-transform-react-jsx-development': 7.12.1
+      '@babel/plugin-transform-react-jsx-self': 7.12.1
+      '@babel/plugin-transform-react-jsx-source': 7.12.1
+      '@babel/plugin-transform-react-pure-annotations': 7.12.1
+    dev: true
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-euCExymHCi0qB9u5fKw7rvlw7AZSjw/NaB9h7EkdTt5+yHRrXdiRTh7fkG3uBPpJg82CqLfp1LHLqWGSCrab+g==
   /@babel/preset-react/7.12.1_@babel+core@7.12.3:
     dependencies:
       '@babel/core': 7.12.3
@@ -1677,6 +1754,19 @@ packages:
       react-dom: '>=16.10.0'
     resolution:
       integrity: sha512-g6zUjnviUE7zVHDvm9IlWKIocVgw27MZphCotwobS/8bV4lw53k1Sgb/ai6GJ14Omkd14u5dol8O6o5QZhNYeQ==
+  /@snowpack/plugin-react-refresh/2.3.4_react-dom@16.14.0+react@16.14.0:
+    dependencies:
+      '@babel/core': 7.12.3
+      '@babel/plugin-syntax-class-properties': 7.12.1_@babel+core@7.12.3
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      react-refresh: 0.8.3
+    dev: true
+    peerDependencies:
+      react: '>=16.10.0'
+      react-dom: '>=16.10.0'
+    resolution:
+      integrity: sha512-4mkY+HFiQ80Z3XYig2F/H6usFG9YF4xsJANBJOky3POQp92gcIGvirhDlQjvXbjTZHcDPRcpkH6S8V0+g9/mrQ==
   /@snowpack/plugin-run-script/2.1.7:
     dependencies:
       execa: 4.0.3
@@ -9037,10 +9127,11 @@ packages:
     resolution:
       integrity: sha512-faQrqNMzcPCHGVC2aaOINk13K+aaBDUPjGWl0teOXywElLjyVAB6Oe2jj62jHYtwsU49jXhScYbvPENK+6zAvQ==
 specifiers:
+  '@babel/preset-react': ^7.12.1
   '@headlessui/react': 0.2.0
   '@snowpack/app-scripts-react': ^1.12.4
   '@snowpack/plugin-dotenv': ^2.0.4
-  '@snowpack/plugin-react-refresh': ^2.3.3
+  '@snowpack/plugin-react-refresh': ^2.3.4
   '@snowpack/web-test-runner-plugin': ^0.1.3
   '@tailwindcss/ui': 0.6.2
   '@testing-library/react': ^11.0.0

@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { removeElements, addEdge } from 'react-flow-renderer';
 import Sidebar from './Sidebar';
 import Canvas from './Canvas';
 
-// ! This is gonna go
-import initialElements from '../data/elements.js';
+import { useSelection } from '../hooks/useSelection';
 
 const Shell = () => {
-  // ! GLOBAL STATE
-  const [elements, setElements] = useState(initialElements);
-  // ! GLOBAL STATE
-  const [selectedEl, setSelectedEl] = useState(null);
+  // TODO: GLOBAL STATE
+  const [_elements, setElements] = useState([
+    {
+      id: '1',
+      type: 'input',
+      data: {
+        label: 'Root',
+        method: 'GET',
+        path: '/',
+        description: 'root',
+      },
+      position: { x: 250, y: 0 },
+      selected: false,
+    },
+  ]);
 
-  const handleRemoveElements = () => {
+  const elements = useMemo(() => _elements, [_elements]);
+
+  // * ✅ GLOBAL STATE
+  const [selection] = useSelection();
+
+  const onElementsRemove = () => {
+    console.log('removing element: ', selection);
     setElements((elements) => {
-      const returnedElements = removeElements([selectedEl], elements);
+      const returnedElements = removeElements(selection, elements);
       return returnedElements;
     });
   };
@@ -23,29 +39,14 @@ const Shell = () => {
     setElements((elements) => addEdge(params, elements));
   };
 
-  const onElementClick = (event, element) => {
-    setSelectedEl(element);
-  };
-
-  // logic for when the canvas is clicked
-  const onPaneClick = () => {
-    setSelectedEl(null);
-  };
-
-  // Was going to use this but ended up not using it for now
-  // const onSelectionChange = (elementsToSelect) => {};
-
   return (
     <div className="flex h-screen overflow-hidden bg-white">
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-96">
           <Sidebar
-            selectedEl={selectedEl}
-            setSelectedEl={setSelectedEl}
             elements={elements}
             setElements={setElements}
-            // onSelectionChange={onSelectionChange}
-            handleRemoveElements={handleRemoveElements}
+            onElementsRemove={onElementsRemove}
           />
         </div>
       </div>
@@ -86,15 +87,7 @@ const Shell = () => {
               {/* Replace with your content */}
               <div className="py-4">
                 <div className="h-screen border-gray-200 border-dashed rounded-lg">
-                  <Canvas
-                    elements={elements}
-                    onElementsRemove={handleRemoveElements}
-                    onConnect={onConnect}
-                    onElementClick={onElementClick}
-                    onPaneClick={onPaneClick}
-                    selectedEl={selectedEl}
-                    // onSelectionChange={onSelectionChange}
-                  />
+                  <Canvas {...{ elements, onElementsRemove, onConnect }} />
                 </div>
               </div>
               {/* /End replace */}

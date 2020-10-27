@@ -2,14 +2,7 @@ import React from 'react';
 import Inspector from './Inspector';
 import Editor from './Editor/Editor';
 
-const Sidebar = ({
-  selectedEl,
-  setSelectedEl,
-  addNode,
-  elements,
-  setElements,
-  handleRemoveElements,
-}) => {
+const Sidebar = ({ addNode, elements, setElements, onElementsRemove }) => {
   return (
     <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
       <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
@@ -46,11 +39,9 @@ const Sidebar = ({
             addNode={addNode}
             elements={elements}
             setElements={setElements}
-            selectedEl={selectedEl}
-            setSelectedEl={setSelectedEl}
-            handleRemoveElements={handleRemoveElements}
+            onElementsRemove={onElementsRemove}
           />
-          <Inspector selectedEl={selectedEl} />
+          <Inspector />
         </nav>
         {/* <Avatar /> */}
       </div>

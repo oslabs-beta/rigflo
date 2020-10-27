@@ -9,7 +9,9 @@ const PathNode = ({ data }) => {
         // style={{ background: '#555' }}
         onConnect={(params) => console.log('[onConnect]', params)}
       />
-      <div>{data.label}</div>
+      <div>
+        <strong>{data.label}</strong>
+      </div>
       <Handle
         type="source"
         position="bottom"

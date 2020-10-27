@@ -4,6 +4,7 @@ import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 import ServerNode from './nodes/ServerNode';
 import PathNode from './nodes/PathNode';
 import { OASDocumentClient } from '../services/document';
+import { useSelection } from '../hooks/useSelection';
 
 const doc = new OASDocumentClient();
 
@@ -17,14 +18,7 @@ const nodeTypes = {
   pathNode: PathNode,
 };
 
-const Canvas = ({
-  elements,
-  onElementsRemove,
-  onElementClick,
-  onConnect,
-  onSelectionChange,
-  onPaneClick,
-}) => {
+const Canvas = ({ elements, onElementsRemove, onConnect }) => {
   const saveYAML = async () => {
     console.log({ doc });
     // await doc.isReady;
@@ -44,20 +38,28 @@ const Canvas = ({
 
   const getMiniMapNodeColor = (node) => node.style?.background || '#fff';
 
+  const [, setSelection] = useSelection();
+
+  const updateSelection = (selected) =>
+    setSelection(
+      (selected || []).map(({ id }) => elements.find((el) => el.id === id)),
+    );
+
   return (
     <>
       <button onClick={saveYAML}>Save YAML</button>
       <ReactFlow
-        elements={elements}
-        onElementsRemove={onElementsRemove}
-        onSelectionChange={onSelectionChange}
-        onConnect={onConnect}
-        onLoad={onLoad}
+        {...{
+          elements,
+          nodeTypes,
+          onConnect,
+          onLoad,
+          onElementsRemove,
+          onPaneClick: () => setSelection([]),
+          onSelectionChange: updateSelection,
+        }}
         snapToGrid={true}
         snapGrid={[15, 15]}
-        onElementClick={onElementClick}
-        nodeTypes={nodeTypes}
-        onPaneClick={onPaneClick}
       >
         <Background variant="dots" gap={12} size={0.5} />
         <Controls style={{ bottom: '150px' }} />
