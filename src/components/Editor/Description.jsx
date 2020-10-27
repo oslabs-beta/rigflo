@@ -4,6 +4,7 @@ const Description = ({ descriptionInput, setDescriptionInput }) => {
   const onDescriptionInputChange = (event) => {
     setDescriptionInput(event.target.value);
   };
+
   const onDescriptionChange = event;
   return (
     <div className="mt-6 sm:mt-5">

@@ -1,4 +1,5 @@
 const SocketRPC = require('./SocketRPC');
+const yaml = require('js-yaml');
 
 class OASDocument extends SocketRPC {
   constructor(obj) {
@@ -45,9 +46,6 @@ class OASDocument extends SocketRPC {
       nodes[i] = { id, type, path, method, description, paths: {} };
     });
 
-    console.log('NODES', nodes);
-    console.log('EDGES', edges);
-
     // Connect all the edges
     edges.forEach(({ source, target }) => {
       // Find the source and target nodes
@@ -59,7 +57,7 @@ class OASDocument extends SocketRPC {
     });
 
     const root = nodes.find((n) => n.type === 'input');
-    return root;
+    return yaml.dump(root);
   }
 
   // TODO

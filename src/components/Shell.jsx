@@ -23,7 +23,7 @@ const Shell = () => {
   //   }
   // }
 
-  console.log(elements);
+  // console.log(elements);
 
   const handleRemoveElements = () => {
     setElements((elements) => {
@@ -41,6 +41,7 @@ const Shell = () => {
 
   const onPaneClick = (event) => {
     //logic for when the canvas is clicked
+    setSelectedEl(null);
   };
 
   const onSelectionChange = (elementsToSelect) => {};

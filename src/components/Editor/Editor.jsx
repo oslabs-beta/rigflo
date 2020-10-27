@@ -22,24 +22,10 @@ const Editor = ({
   const [selectedMethod, setSelectedMethod] = useState(initialMethod);
   const [isOpen, setIsOpen] = useState(false);
 
-  const editor = useRef(null);
-  ``;
-
-  function updateForm() {
-    if (selectedEl !== null) {
-      setPathInput(selectedEl.data.path);
-      setDescriptionInput(selectedEl.data.description);
-      setSelectedMethod(selectedEl.data.method);
-    }
-  }
-  useDidUpdateEffect(updateForm, [selectedEl]);
-
   const updateNode = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     const newElements = elements.map((element) => {
       if (element.id === selectedEl.id) {
-        console.log({ selectedEl });
-        console.log(element.id);
         const updatedElement = {
           ...element,
           data: {
@@ -60,16 +46,42 @@ const Editor = ({
       }
       return element;
     });
-    console.log(newElements);
+    console.log({ newElements });
     setElements(newElements);
     console.log({ elements });
   };
+
+  // const editor = useRef(null);
+  // ``;
+
+  // function updateForm() {
+  //   if (selectedEl !== null) {
+  //     setPathInput(selectedEl.data.path);
+  //     setDescriptionInput(selectedEl.data.description);
+  //     setSelectedMethod(selectedEl.data.method);
+  //   }
+  // }
+  // const editor = useDidUpdateEffect(updateForm, [selectedEl]);
+
+  // Set the form input boxes to the data of a node when it is selected
+  useEffect(() => {
+    if (selectedEl === null) return;
+    setPathInput(selectedEl.data.path);
+    setDescriptionInput(selectedEl.data.description);
+    setSelectedMethod(selectedEl.data.method);
+  }, [selectedEl]);
+
+  // update the node in the elements list when a form value is changed
+  useEffect(() => {
+    selectedEl && updateNode();
+  }, [pathInput, descriptionInput, selectedMethod]);
 
   const addNode = (e) => {
     e.preventDefault();
 
     const node = {
-      id: `${selectedMethod}-${elements.length + 1}`,
+      // id: `${selectedMethod}-${elements.length + 1}`,
+      id: `${Date.now()}`,
       data: {
         label: (
           <>
@@ -112,7 +124,7 @@ const Editor = ({
       </a>
       <Transition show={isOpen} style={{ marginBottom: '440px' }}>
         <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
-          <form ref={editor}>
+          <form /*ref={editor}*/>
             <div className="px-2 mt-5 space-y-1">
               <div className="pt-8 mt-8 border-t border-gray-200 sm:mt-5 sm:pt-10">
                 <div>
