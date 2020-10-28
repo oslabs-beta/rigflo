@@ -1,24 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Transition } from '@headlessui/react';
 import { PencilAlt } from 'heroicons-react';
-import {
-  useStoreState,
-  useStoreActions,
-  removeElements,
-} from 'react-flow-renderer';
+import { removeElements } from 'react-flow-renderer';
 
 import Path from './Path';
 import MethodSelect from './MethodSelect';
 import Description from './Description';
 import AddPathBtn from './AddPathBtn';
+import { useElements } from '../../hooks/useElements';
 import useSelectedElement from '../../hooks/useSelectedElement';
 
 const Editor = () => {
-  // We can access our elements state and actions because the Editor component
-  // is a child of the ReactFlowProvider (inside src/App.jsx)
-  const elements = useStoreState((store) => store.elements);
-  const setElements = useStoreActions((actions) => actions.setElements);
-
+  const [elements, setElements] = useElements();
   const selectedElement = useSelectedElement();
 
   // Node editor form state
@@ -40,13 +33,14 @@ const Editor = () => {
     );
     // If there is no selection, load an empty form
     if (!selectedElement) {
-      setFormData({ path: '', description: '', method: '' });
+      setFormData({ path: '', description: '', method: 'Select Method' });
     } else {
       setFormData(selectedElement.data);
     }
   }, [selectedElement]);
 
-  const updateSelectedNode = useCallback(() => {
+  const updateSelectedNode = useCallback((e) => {
+    e.preventDefault();
     // Skip updating if the form data reflects the current node data
     if (
       path === selectedElement.data.path &&
@@ -92,23 +86,14 @@ const Editor = () => {
     setElements([...elements, node]);
 
     // Clear form input
-    // setPath('');
-    // setDescription('');
-    // setMethod('');
+    setPath('');
+    setDescription('');
+    setMethod('Select Method');
   };
 
   const removeSelectedNode = () => {
     setElements(removeElements([selectedElement], elements));
   };
-
-  // Helper function to update the currently selected node when setting form data
-  const andUpdate = useCallback(
-    (setStateCallback) => (value) => {
-      setStateCallback(value);
-      updateSelectedNode();
-    },
-    [updateSelectedNode],
-  );
 
   return (
     <div className="flow-root">
@@ -134,19 +119,23 @@ const Editor = () => {
                     Enter basic request information
                   </p>
                 </div>
-                <Path pathInput={path} setPathInput={andUpdate(setPath)} />
+                <Path pathInput={path} setPathInput={setPath} />
                 <MethodSelect
                   selectedMethod={method}
-                  setSelectedMethod={andUpdate(setMethod)}
+                  setSelectedMethod={setMethod}
                 />
                 <Description
                   descriptionInput={description}
-                  setDescriptionInput={andUpdate(setDescription)}
+                  setDescriptionInput={setDescription}
                 />
 
                 {selectedElement ? (
                   <>
-                    <button className="px-4 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-red sm:text-sm sm:leading-5">
+                    <button
+                      type="button"
+                      onClick={updateSelectedNode}
+                      className="px-4 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
+                    >
                       Edit
                     </button>
                     <button

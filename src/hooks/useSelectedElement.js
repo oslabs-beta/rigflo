@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
 import { useStoreState } from 'react-flow-renderer';
+import { useElements } from './useElements';
 
 export default function useSelectedElement() {
-  const { elements, selectedElements } = useStoreState((store) => ({
-    elements: store.elements,
-    selectedElements: store.selectedElements || [],
-  }));
+  const [elements] = useElements();
+  const selectedElements = useStoreState(
+    (store) => store.selectedElements || [],
+  );
 
   return useMemo(() => {
     if (!selectedElements.length) return undefined;

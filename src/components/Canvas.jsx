@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactFlow, {
   removeElements,
   addEdge,
@@ -9,26 +9,26 @@ import ReactFlow, {
 
 import ServerNode from './nodes/ServerNode';
 import PathNode from './nodes/PathNode';
+import { useElements } from '../hooks/useElements';
 
 export default function Canvas() {
-  // Initial root node state
-  // NOTE: This is local state for the convenience of this component.
-  //       Use the ReactFlowProvider store to interact with the elements
-  //       outside of this component.
-  const [elements, setElements] = useState([
-    {
-      id: `${Date.now()}`,
-      type: 'input',
-      data: {
-        label: 'Root',
-        method: 'GET',
-        path: '/',
-        description: 'root',
+  const [elements, setElements] = useElements();
+  useEffect(() => {
+    setElements([
+      {
+        id: `${Date.now()}`,
+        type: 'input',
+        data: {
+          label: 'Root',
+          method: 'GET',
+          path: '/',
+          description: 'root',
+        },
+        position: { x: 250, y: 0 },
+        selected: false,
       },
-      position: { x: 250, y: 0 },
-      selected: false,
-    },
-  ]);
+    ]);
+  }, []);
 
   // The various ReactFlow component handler props
   const reactFlowHandlers = {
