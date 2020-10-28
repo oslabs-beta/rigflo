@@ -27,7 +27,9 @@ const Toolbar = () => {
       const targetNode = nodes.find((n) => n.id === target);
 
       // Note: this only works if every target has exactly one source
-      sourceNode.paths[targetNode.path] = targetNode;
+      const targetPaths = sourceNode.paths[targetNode.path] || {};
+      targetPaths[targetNode.method] = targetNode;
+      sourceNode.paths[targetNode.path] = targetPaths;
     });
 
     const root = nodes.find((n) => n.type === 'input');
