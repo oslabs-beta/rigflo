@@ -1,4 +1,5 @@
 import React from 'react';
+import Toolbar from './components/Toolbar';
 
 const Layout = ({ sidebar, children }) => (
   <div className="flex h-screen overflow-hidden bg-white">
@@ -31,10 +32,8 @@ const Layout = ({ sidebar, children }) => (
         className="relative z-0 flex-1 overflow-y-auto focus:outline-none"
         tabIndex={0}
       >
-        <div className="pt-2 pb-6 md:py-6">
-          <div className="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
-            <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-          </div>
+        <div className="pb-6">
+          <Toolbar />
           <div className="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
             <div className="py-4">
               <div className="h-screen border-gray-200 border-dashed rounded-lg">
