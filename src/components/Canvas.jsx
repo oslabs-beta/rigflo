@@ -1,76 +1,83 @@
-import React from 'react';
-import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
+import React, { useState } from 'react';
+import ReactFlow, {
+  removeElements,
+  addEdge,
+  MiniMap,
+  Controls,
+  Background,
+} from 'react-flow-renderer';
 
 import ServerNode from './nodes/ServerNode';
 import PathNode from './nodes/PathNode';
-import { OASDocumentClient } from '../services/document';
-import { useSelection } from '../hooks/useSelection';
 
-const doc = new OASDocumentClient();
+export default function Canvas() {
+  // Initial root node state
+  // NOTE: This is local state for the convenience of this component.
+  //       Use the ReactFlowProvider store to interact with the elements
+  //       outside of this component.
+  const [elements, setElements] = useState([
+    {
+      id: `${Date.now()}`,
+      type: 'input',
+      data: {
+        label: 'Root',
+        method: 'GET',
+        path: '/',
+        description: 'root',
+      },
+      position: { x: 250, y: 0 },
+      selected: false,
+    },
+  ]);
 
-const onLoad = (reactFlowInstance) => {
-  console.log('flow loaded:', reactFlowInstance);
-  reactFlowInstance.fitView();
-};
+  // The various ReactFlow component handler props
+  const reactFlowHandlers = {
+    onLoad(instance) {
+      instance.fitView();
+    },
 
-const nodeTypes = {
-  serverNode: ServerNode,
-  pathNode: PathNode,
-};
+    onConnect(params) {
+      setElements((elements) => addEdge(params, elements));
+    },
 
-const Canvas = ({ elements, onElementsRemove, onConnect }) => {
-  const saveYAML = async () => {
-    console.log({ doc });
-    // await doc.isReady;
-    const json = await doc.toYAML(elements);
-    console.log(json);
+    onPaneClick() {},
+
+    onElementsRemove(elementsToRemove) {
+      setElements((elements) => removeElements(elementsToRemove, elements));
+    },
   };
 
-  const getMiniMapNodeStrokeColor = (node) => {
-    const nodeColors = {
-      input: '#0041d0',
-      pathNode: 'green',
-      output: '#ff0072',
-      default: '#1a192b',
-    };
-    return nodeColors[node.type] || node.style?.background || '#eee';
+  // Minimap props for rendering node colors properly
+  const miniMapFunctions = {
+    nodeStrokeColor(node) {
+      const nodeColors = {
+        input: '#0041d0',
+        pathNode: 'green',
+        output: '#ff0072',
+        default: '#1a192b',
+      };
+      return nodeColors[node.type] || node.style?.background || '#eee';
+    },
+    nodeColor(node) {
+      return node.style?.background || '#fff';
+    },
   };
-
-  const getMiniMapNodeColor = (node) => node.style?.background || '#fff';
-
-  const [, setSelection] = useSelection();
-
-  const updateSelection = (selected) =>
-    setSelection(
-      (selected || []).map(({ id }) => elements.find((el) => el.id === id)),
-    );
 
   return (
-    <>
-      <button onClick={saveYAML}>Save YAML</button>
-      <ReactFlow
-        {...{
-          elements,
-          nodeTypes,
-          onConnect,
-          onLoad,
-          onElementsRemove,
-          onPaneClick: () => setSelection([]),
-          onSelectionChange: updateSelection,
-        }}
-        snapToGrid={true}
-        snapGrid={[15, 15]}
-      >
-        <Background variant="dots" gap={12} size={0.5} />
-        <Controls style={{ bottom: '150px' }} />
-        <MiniMap
-          style={{ marginBottom: 100 }}
-          nodeStrokeColor={getMiniMapNodeStrokeColor}
-          nodeColor={getMiniMapNodeColor}
-          borderRadius={2}
-        />
-      </ReactFlow>
-    </>
+    <ReactFlow
+      nodeTypes={{ serverNode: ServerNode, pathNode: PathNode }}
+      snapToGrid={true}
+      snapGrid={[15, 15]}
+      elements={elements}
+      {...reactFlowHandlers}
+    >
+      <Background variant="dots" gap={12} size={0.5} />
+      <Controls style={{ bottom: '150px' }} />
+      <MiniMap
+        style={{ marginBottom: 100 }}
+        borderRadius={2}
+        {...miniMapFunctions}
+      />
+    </ReactFlow>
   );
-};
-export default Canvas;
+}

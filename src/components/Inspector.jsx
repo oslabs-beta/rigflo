@@ -3,14 +3,11 @@ import { Transition } from '@headlessui/react';
 import JSONPretty from 'react-json-pretty';
 import { Code } from 'heroicons-react';
 import 'react-json-pretty/themes/1337.css';
-import { useSelection } from '../hooks/useSelection';
+import useSelectedElement from '../hooks/useSelectedElement';
 
-// ! selectedEl will be in global state instead of prop drilling it
 const Inspector = () => {
+  const selectedElement = useSelectedElement();
   const [isOpen, setIsOpen] = useState(true);
-
-  const [selection] = useSelection();
-  const selectedEl = selection[0];
 
   return (
     <div className="flow-root">
@@ -27,7 +24,7 @@ const Inspector = () => {
           <div>
             <JSONPretty
               id="json-pretty"
-              data={selectedEl}
+              data={selectedElement}
               style={{ fontSize: '.64rem' }}
               mainStyle="padding:1em"
               valueStyle="font-size:1em"

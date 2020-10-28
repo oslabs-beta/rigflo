@@ -2,13 +2,20 @@ import React from 'react';
 import './tailwind.output.css';
 
 import { SelectionProvider } from './hooks/useSelection';
-import Shell from './components/Shell';
+import { ReactFlowProvider } from 'react-flow-renderer';
+import Layout from './Layout';
+import Sidebar from './components/Sidebar';
+import Canvas from './components/Canvas';
 
 const App = () => {
   return (
-    <SelectionProvider>
-      <Shell />
-    </SelectionProvider>
+    <ReactFlowProvider>
+      <SelectionProvider>
+        <Layout sidebar={<Sidebar />}>
+          <Canvas />
+        </Layout>
+      </SelectionProvider>
+    </ReactFlowProvider>
   );
 };
 
