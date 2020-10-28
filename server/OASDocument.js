@@ -1,4 +1,5 @@
 const SocketRPC = require('./SocketRPC');
+const yaml = require('js-yaml');
 
 class OASDocument extends SocketRPC {
   constructor(obj) {
@@ -11,6 +12,52 @@ class OASDocument extends SocketRPC {
     this.server = obj.servers;
     this.paths = new Paths(this, obj.paths);
     this.components = new Components(this, obj.components);
+  }
+
+  toYAML(elements) {
+    const isEdge = (el) => el.source || el.target;
+
+    const edges = [];
+    const nodes = [];
+
+    // Sort the nodes and edges
+    elements.forEach((el) => (isEdge(el) ? edges : nodes).push(el));
+
+    // Connect the nodes to get this:
+    /* 
+      {
+        paths: {
+          'pathName': {
+            method: 'GET',
+            description: 'such a cool path',
+            paths: {
+              'subPathName': {
+                method: 'GET',
+                description: 'such a cool path',
+              }
+            }
+          }
+        }
+      }
+    */
+
+    // Format the path nodes
+    nodes.forEach(({ id, type, data: { path, method, description } }, i) => {
+      nodes[i] = { id, type, path, method, description, paths: {} };
+    });
+
+    // Connect all the edges
+    edges.forEach(({ source, target }) => {
+      // Find the source and target nodes
+      const sourceNode = nodes.find((n) => n.id === source);
+      const targetNode = nodes.find((n) => n.id === target);
+
+      // Note: this only works if every target has exactly one source
+      sourceNode.paths[targetNode.path] = targetNode;
+    });
+
+    const root = nodes.find((n) => n.type === 'input');
+    return yaml.dump(root);
   }
 
   // TODO

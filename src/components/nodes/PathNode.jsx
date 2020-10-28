@@ -1,15 +1,17 @@
 import React, { memo } from 'react';
 import { Handle } from 'react-flow-renderer';
-export default memo(({ data }) => {
+const PathNode = ({ data }) => {
   return (
     <>
       <Handle
         type="target"
         position="left"
         // style={{ background: '#555' }}
-        onConnect={(params) => console.log('handle onConnect', params)}
+        onConnect={(params) => console.log('[onConnect]', params)}
       />
-      <div>{data.label}</div>
+      <div>
+        <strong>{data.label}</strong>
+      </div>
       <Handle
         type="source"
         position="bottom"
@@ -24,4 +26,6 @@ export default memo(({ data }) => {
       />
     </>
   );
-});
+};
+
+export default memo(PathNode);

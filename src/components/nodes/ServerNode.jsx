@@ -1,10 +1,7 @@
 import React, { memo } from 'react';
 import { Handle } from 'react-flow-renderer';
 
-const style = {
-  border: '1px solid grey',
-};
-export default memo(({ data, style }) => {
+const ServerNode = ({ data }) => {
   return (
     <>
       <Handle
@@ -13,7 +10,9 @@ export default memo(({ data, style }) => {
         style={{ background: '#555' }}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-      <div>Custom Server Node</div>
+      <div>
+        <strong>{data.label}</strong>
+      </div>
       <Handle
         type="source"
         position="right"
@@ -28,4 +27,6 @@ export default memo(({ data, style }) => {
       />
     </>
   );
-});
+};
+
+export default memo(ServerNode);
