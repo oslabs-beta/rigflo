@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ReactFlow, {
   removeElements,
   addEdge,
@@ -13,6 +13,7 @@ import { useElements } from '../hooks/useElements';
 
 export default function Canvas() {
   const [elements, setElements] = useElements();
+
   useEffect(() => {
     setElements([
       {

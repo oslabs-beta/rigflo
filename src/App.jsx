@@ -1,21 +1,21 @@
 import React from 'react';
 import './tailwind.output.css';
 
-import { ElementsProvider } from './hooks/useElements';
+import { RecoilRoot } from 'recoil';
 import { ReactFlowProvider } from 'react-flow-renderer';
-import Layout from './Layout';
+import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import Canvas from './components/Canvas';
 
 const App = () => {
   return (
-    <ReactFlowProvider>
-      <ElementsProvider>
+    <RecoilRoot>
+      <ReactFlowProvider>
         <Layout sidebar={<Sidebar />}>
           <Canvas />
         </Layout>
-      </ElementsProvider>
-    </ReactFlowProvider>
+      </ReactFlowProvider>
+    </RecoilRoot>
   );
 };
 
