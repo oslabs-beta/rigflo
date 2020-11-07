@@ -26,11 +26,11 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userInfo');
-    setAuthState({
-      token: null,
-      userInfo: {},
-      expiresAt: null,
-    });
+    // setAuthState({
+    //   token: null,
+    //   userInfo: {},
+    //   expiresAt: null,
+    // });
   };
 
   const isAuthenticated = () => {

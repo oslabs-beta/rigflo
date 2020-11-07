@@ -12,9 +12,11 @@ const App = () => {
   return (
     <ReactFlowProvider>
       <ElementsProvider>
-        <Layout sidebar={<Sidebar />}>
-          <Canvas />
-        </Layout>
+        <AuthProvider>
+          <Layout sidebar={<Sidebar />}>
+            <Canvas />
+          </Layout>
+        </AuthProvider>
       </ElementsProvider>
     </ReactFlowProvider>
   );

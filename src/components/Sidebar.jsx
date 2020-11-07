@@ -1,11 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Inspector from './Inspector';
 import Editor from './Editor/Editor';
 import Avatar from './Avatar';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Sidebar() {
-  const authContext = useContext(AuthContext);
+  console.log(AuthContext);
+  const auth = useContext(AuthContext);
+
+  console.log({ auth });
+
+  const { authState } = auth;
+
+  console.log({ authState });
+
+  useEffect(() => {
+    if (!authState) console.log('Auth removed');
+  }, [authState]);
+
   return (
     <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
       <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
