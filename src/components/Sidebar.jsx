@@ -1,6 +1,7 @@
 import React from 'react';
 import Inspector from './Inspector';
 import Editor from './Editor/Editor';
+import Avatar from './Avatar';
 
 const Sidebar = () => (
   <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
@@ -37,7 +38,7 @@ const Sidebar = () => (
         <Editor />
         <Inspector />
       </nav>
-      {/* <Avatar /> */}
+      <Avatar />
     </div>
   </div>
 );
