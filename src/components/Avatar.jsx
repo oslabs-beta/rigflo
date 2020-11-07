@@ -2,7 +2,7 @@ import React from 'react';
 
 const Avatar = () => (
   <div className="flex flex-shrink-0 p-4 border-t border-gray-200">
-    <a id="github-button" className="btn btn-block btn-social btn-github">
+    <a href="/" className="text-blue-800 inline-block">
       <i className="fa fa-github"></i> Sign in with Github
     </a>
     <a href="/" className="flex-shrink-0 block w-full group">
