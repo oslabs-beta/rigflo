@@ -5,14 +5,8 @@ import Avatar from './Avatar';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Sidebar() {
-  console.log(AuthContext);
   const auth = useContext(AuthContext);
-
-  console.log({ auth });
-
   const { authState } = auth;
-
-  console.log({ authState });
 
   useEffect(() => {
     if (!authState) console.log('Auth removed');
