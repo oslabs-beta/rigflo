@@ -1,6 +1,6 @@
 import React from 'react';
 import './tailwind.output.css';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 
 import { ElementsProvider } from './hooks/useElements';
 import { ReactFlowProvider } from 'react-flow-renderer';

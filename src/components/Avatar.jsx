@@ -6,8 +6,7 @@ export default function Avatar() {
   const auth = useContext(AuthContext);
   const { authState } = auth;
 
-  // TODO: Change to render button if user is not logged in
-  if (authState.userInfo) {
+  if (!authState.token) {
     return (
       <a
         href="https://oauth.rigflo.workers.dev/"

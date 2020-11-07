@@ -11,6 +11,7 @@ const AuthProvider = ({ children }) => {
     return {
       token,
       userInfo: userInfo ? JSON.parse(userInfo) : {},
+      status: 'unauthenticated',
     };
   });
 
@@ -26,11 +27,6 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userInfo');
-    // setAuthState({
-    //   token: null,
-    //   userInfo: {},
-    //   expiresAt: null,
-    // });
   };
 
   const isAuthenticated = () => {
