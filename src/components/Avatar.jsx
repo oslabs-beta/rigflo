@@ -1,15 +1,19 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
+
 import { AuthContext } from '../context/AuthContext';
 
 export default function Avatar() {
   const auth = useContext(AuthContext);
   const { authState } = auth;
-  console.log({ authState });
 
   // TODO: Change to render button if user is not logged in
   if (authState.userInfo) {
     return (
-      <a href="/" className="text-blue-800 inline-block">
+      <a
+        href="https://oauth.rigflo.workers.dev/"
+        className="text-blue-800 inline-block"
+      >
         <i className="fa fa-github"></i> Sign in with Github
       </a>
     );
