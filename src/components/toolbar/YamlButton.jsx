@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { useElements } from '../hooks/useElements';
+import { useElements } from '../../hooks/useElements';
 import yaml from 'js-yaml';
 
-const Toolbar = () => {
+const YamlButton = () => {
   const [elements] = useElements();
   const downloadRef = useRef(null);
   //putting here for now. will move back to server later
@@ -54,22 +54,17 @@ const Toolbar = () => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-6 bg-purple-700">
-      <div className="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
-        <div>
-          <a
-            href="#"
-            onClick={downloadYaml}
-            ref={downloadRef}
-            className="inline-block px-4 py-2 mt-4 text-sm leading-none text-white border border-white rounded hover:border-transparent hover:text-purple-500 hover:bg-white lg:mt-0"
-            download
-          >
-            Download YAML
-          </a>
-        </div>
-      </div>
-    </nav>
+    <>
+      <a
+        href="#"
+        onClick={downloadYaml}
+        ref={downloadRef}
+        className="inline-block px-4 py-2 mt-4 text-sm leading-none text-white border-2 border-white rounded hover:border-transparent hover:text-purple-500 hover:bg-white lg:mt-0"
+        download
+      >
+        Download YAML
+      </a>
+    </>
   );
 };
-
-export default Toolbar;
+export default YamlButton;

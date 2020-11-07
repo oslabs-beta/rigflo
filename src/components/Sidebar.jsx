@@ -6,11 +6,7 @@ const Sidebar = () => (
   <div className="flex flex-col flex-1 h-0 bg-white border-r border-gray-200">
     <div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
       <div className="flex items-center flex-shrink-0 px-4">
-        <img
-          className="w-auto h-8"
-          src="https://tailwindui.com/img/logos/workflow-logo-on-white.svg"
-          alt="Workflow"
-        />
+        {/* add logo */}
       </div>
       <nav className="px-2 mt-5 space-y-1 bg-white flex-0">
         <a
