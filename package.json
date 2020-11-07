@@ -36,6 +36,8 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {
+    "@babel/cli": "7.12.1",
+    "@babel/core": "7.12.3",
     "@babel/preset-react": "^7.12.1",
     "@snowpack/app-scripts-react": "^1.12.4",
     "@snowpack/plugin-dotenv": "^2.0.4",
