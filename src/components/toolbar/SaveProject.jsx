@@ -2,6 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useElements } from '../../hooks/useElements';
 import Modal from 'react-modal';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 Modal.setAppElement('#root');
 
 const SaveProject = () => {
@@ -77,9 +88,10 @@ const SaveProject = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={toggleModal}
-        contentLabel="My dialog"
+        style={customStyles}
+        contentLabel="Save project dialog"
       >
-        <h1>Save Project</h1>
+        <h1 className="text-center">Save Project</h1>
         <form className="w-full max-w-sm">
           <div className="flex items-center py-2 border-b border-teal-500">
             <input
