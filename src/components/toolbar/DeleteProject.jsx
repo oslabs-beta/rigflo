@@ -11,6 +11,10 @@ const DeleteProject = () => {
     const removeAllButRoot = elements.filter((el) => el.type !== 'input');
     setElements(removeElements(removeAllButRoot, elements));
     setIsDeleted(true);
+    // delete project from localstorage
+    if (window.localStorage.getItem('project-1')) {
+      window.localStorage.removeItem('project-1');
+    }
   };
 
   useEffect(() => {
