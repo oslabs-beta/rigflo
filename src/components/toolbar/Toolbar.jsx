@@ -1,6 +1,7 @@
 import React from 'react';
 import YamlButton from './YamlButton';
 import DeleteProject from './DeleteProject';
+import SaveProject from './SaveProject';
 
 const Toolbar = () => {
   return (
@@ -9,6 +10,7 @@ const Toolbar = () => {
         <div>
           <YamlButton />
           <DeleteProject />
+          <SaveProject />
         </div>
       </div>
     </nav>
