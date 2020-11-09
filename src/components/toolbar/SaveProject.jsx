@@ -56,7 +56,8 @@ const SaveProject = () => {
   const [savedText, setSavedText] = useState('Save Project');
   const [projectName, setProjectName] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
-  const [project, setProject] = useLocalStorage(projectName, elements);
+  //hard coded for now b/c of how the useLocalStorage hook works
+  const [project, setProject] = useLocalStorage('project-1', elements);
 
   const handleSave = (e) => {
     e.preventDefault();
