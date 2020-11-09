@@ -16,8 +16,13 @@ const AuthProvider = ({ children }) => {
   });
 
   const setAuthInfo = ({ token, userInfo }) => {
+    console.log('setting auth info');
+
+    console.log({ userInfo });
+
     localStorage.setItem('token', token);
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
     setAuthState({
       token,
       userInfo,

@@ -1,50 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocation } from '@reach/router';
-import { useAsync } from 'react-async-hook';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-
-const fetchGithubUser = async (code) => {
-  const result = await axios.get(
-    `https://gh-user.rigflo.workers.dev/?code=${code}`,
-  );
-  console.log('fetching user');
-  return result;
-};
 
 // This route is hit when a user is authenticated with GH but we still don't have the user info
 export default function Callback() {
   const auth = useContext(AuthContext);
-  const { authState } = auth;
+  const { authState, setAuthState } = auth;
 
-  // Get auth code we receive back from github
   const location = useLocation();
-  const urlParams = new URLSearchParams(location.search);
-  const code = urlParams.get('code');
 
-  const { loading, error, data } = useAsync(fetchGithubUser, code);
+  const { searchParams } = new URL(location.href);
+  const code = searchParams.get('code');
 
-  console.log({ data });
+  console.log('about to async fetch');
 
-  // update auth state manually for now
-  authState.token = code;
-  authState.userInfo = {
-    name: 'James',
-  };
-  authState.status = 'pending';
-
-  console.log(authState);
+  useEffect(() => {
+    // call worker with auth code which calls github to get access token and make subsequent request for the user
+    // TODO: This needs to be fixed, it currently does not send a request to the server due to CORS issues.
+    async function fetchData() {
+      const config = {
+        method: 'GET',
+        url: `https://gh-user.rigflo.workers.dev/?code=${code}`,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      };
+      const { data } = await axios(config);
+      return data;
+    }
+    fetchData();
+  }, [code]);
 
   return (
     <div>
-      {loading && <div>Loading</div>}
-      {error && <div>Error: {error.message}</div>}
-      {data && (
-        <div>
-          <div>Success!</div>
-          <div>Name: {data}</div>
-        </div>
-      )}
+      <h1>hold up</h1>
     </div>
   );
 }
