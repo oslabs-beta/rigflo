@@ -55,11 +55,8 @@ async function handleRequest(request) {
 
     console.log({ user });
 
-    return new Response('Hello worker!', {
+    return new Response(JSON.stringify(user), {
       status: 201,
-      headers: {
-        'content-type': 'text/plain',
-      },
     });
   } catch (error) {
     console.error(error);

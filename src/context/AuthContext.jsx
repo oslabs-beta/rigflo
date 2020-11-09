@@ -11,15 +11,10 @@ const AuthProvider = ({ children }) => {
     return {
       token,
       userInfo: userInfo ? JSON.parse(userInfo) : {},
-      status: 'unauthenticated',
     };
   });
 
   const setAuthInfo = ({ token, userInfo }) => {
-    console.log('setting auth info');
-
-    console.log({ userInfo });
-
     localStorage.setItem('token', token);
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
@@ -32,12 +27,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userInfo');
-  };
-
-  const isAuthenticated = () => {
-    if (!authState.token || !authState.expiresAt) return false;
-
-    return new Date().getTime() / 1000 < authState.expiresAt;
+    setAuthState({ token: undefined, userInfo: {} });
   };
 
   return (
@@ -45,7 +35,6 @@ const AuthProvider = ({ children }) => {
       value={{
         authState,
         setAuthState: (authInfo) => setAuthInfo(authInfo),
-        isAuthenticated,
         logout,
       }}
     >
