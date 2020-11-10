@@ -1,10 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useElements } from '../../hooks/useElements';
 import yaml from 'js-yaml';
+import Modal from 'react-modal';
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
+Modal.setAppElement('#root');
 const YamlButton = () => {
   const [elements] = useElements();
   const downloadRef = useRef(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
   //putting here for now. will move back to server later
   const jsonToYaml = () => {
     const isEdge = (el) => el.source || el.target;
@@ -53,10 +67,18 @@ const YamlButton = () => {
       link.click();
       // window.open(toDataURL(yamlData));
     } catch (error) {
+      setIsError(true);
       console.log(error);
     }
   };
-
+  const handleError = (e) => {
+    e.preventDefault();
+    setModalOpen(!isModalOpen);
+    setIsError(false);
+  };
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
+  };
   return (
     <>
       <a
@@ -68,6 +90,30 @@ const YamlButton = () => {
       >
         Download YAML
       </a>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={toggleModal}
+        style={customStyles}
+        contentLabel="Save project dialog"
+      >
+        <h1 className="text-center">Download Error</h1>
+        <form className="w-full max-w-sm">
+          <div className="flex items-center py-2 border-b border-teal-500">
+            <h3>Node connection error:</h3>
+            <p>
+              All nodes must be connected from the root. Please look at your
+              connections.
+            </p>
+            <button
+              className="flex-shrink-0 px-2 py-1 text-sm text-white bg-teal-500 border-4 border-teal-500 rounded hover:bg-teal-700 hover:border-teal-700"
+              type="button"
+              onClick={handleError}
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </Modal>
     </>
   );
 };
