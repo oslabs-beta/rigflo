@@ -15,8 +15,9 @@ router.get(
   userController.requestToken,
   userController.getUserProfile,
   (req, res) => {
+    const { login, avatar_url } = res.locals.user;
     res.redirect(
-      `http://localhost:8080/?access_token=${res.locals.access_token}`,
+      `http://localhost:8080/login/callback?access_token=${res.locals.access_token}&login=${login}&avatar_url=${avatar_url}`,
     );
   },
 );

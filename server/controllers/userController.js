@@ -69,7 +69,9 @@ userController.getUserProfile = async (req, res, next) => {
       },
     };
 
-    const userProfile = await axios(config);
+    const { data } = await axios(config);
+
+    res.locals.user = data;
 
     return next();
   } catch (e) {
