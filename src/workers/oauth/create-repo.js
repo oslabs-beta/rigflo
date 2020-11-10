@@ -2,9 +2,6 @@ addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request));
 });
 
-const client_id = '9736e547efbf758aa0dc';
-const client_secret = '70f7de0cf4ef9031dbdb112632731be342384dd3';
-
 /**
  * Respond to the request
  * @param {Request} request
@@ -22,6 +19,10 @@ async function handleRequest(request) {
   }
 
   try {
+    // get the access token from the request url
+    const { searchParams } = new URL(request.url);
+    const token = searchParams.get('token');
+
     // redirect POST requests to the /user/repos
     if (request.method === 'POST') {
       const response = await fetch('https://api.github.com/user/repos', {
@@ -30,10 +31,10 @@ async function handleRequest(request) {
           Accept: 'application/vnd.github.v3+json',
           'Content-type': 'application/json',
           'User-Agent': 'request',
-          Authorization: 'token 798577036f555b1192566d45e51959e87c5898b2',
+          Authorization: `token ${token}`,
         },
         body: JSON.stringify({
-          name: 'Rigflo Test Repo',
+          name: `Rigflo YAML File ${Date.now()}`,
           description: 'Test number 2',
           homepage: 'https://example.com',
           private: false,
@@ -45,6 +46,8 @@ async function handleRequest(request) {
 
       console.log({ response });
 
+      const result = await response.json();
+
       const headers = {
         'Access-Control-Allow-Origin': '*',
       };
@@ -53,7 +56,7 @@ async function handleRequest(request) {
         return new Response(JSON.stringify(response), { status: 401, headers });
       }
 
-      return new Response(JSON.stringify({ message: 'Success!', response }), {
+      return new Response(JSON.stringify({ message: 'Success!', result }), {
         status: 201,
         headers,
       });
