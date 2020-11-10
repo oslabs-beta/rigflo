@@ -1,0 +1,6 @@
+name = "rigflo"
+type = "webpack"
+account_id = "2d8aaf31cde7fcf10c27cdb0b119d0ab"
+workers_dev = true
+route = ""
+zone_id = ""

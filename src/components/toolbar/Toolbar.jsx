@@ -2,6 +2,7 @@ import React from 'react';
 import YamlButton from './YamlButton';
 import DeleteProject from './DeleteProject';
 import SaveProject from './SaveProject';
+import PushToGithub from './PushToGithub';
 
 const Toolbar = () => {
   return (
@@ -11,6 +12,7 @@ const Toolbar = () => {
           <YamlButton />
           <DeleteProject />
           <SaveProject />
+          <PushToGithub />
         </div>
       </div>
     </nav>
