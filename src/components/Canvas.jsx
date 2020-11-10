@@ -14,20 +14,26 @@ import { useElements } from '../hooks/useElements';
 export default function Canvas() {
   const [elements, setElements] = useElements();
   useEffect(() => {
-    setElements([
-      {
-        id: `${Date.now()}`,
-        type: 'input',
-        data: {
-          label: 'Root',
-          method: 'GET',
-          path: '/',
-          description: 'root',
+    //hard coded for launch, can be updated later
+    if (window.localStorage.getItem('project-1')) {
+      const savedData = JSON.parse(window.localStorage.getItem('project-1'));
+      setElements(savedData);
+    } else {
+      setElements([
+        {
+          id: `${Date.now()}`,
+          type: 'input',
+          data: {
+            label: 'Root',
+            method: 'GET',
+            path: '/',
+            description: 'root',
+          },
+          position: { x: 250, y: 0 },
+          selected: false,
         },
-        position: { x: 250, y: 0 },
-        selected: false,
-      },
-    ]);
+      ]);
+    }
   }, []);
 
   // The various ReactFlow component handler props
@@ -44,6 +50,9 @@ export default function Canvas() {
 
     onElementsRemove(elementsToRemove) {
       setElements((elements) => removeElements(elementsToRemove, elements));
+    },
+    onNodeDragStop(event, node) {
+      setElements(elements);
     },
   };
 
