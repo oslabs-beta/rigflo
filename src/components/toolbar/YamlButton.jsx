@@ -12,6 +12,8 @@ const customStyles = {
     marginRight: '-30%',
     transform: 'translate(-50%, -50%)',
     width: 'auto',
+    background: 'transparent',
+    border: 'transparent',
   },
 };
 
@@ -62,26 +64,20 @@ const YamlButton = () => {
   const downloadYaml = (event) => {
     try {
       event.preventDefault();
-      if (!elements.length) {
+      if (elements.length) {
         const yamlData = jsonToYaml();
         const link = document.createElement('a');
         link.href = toDataURL(yamlData);
         link.download = 'spec.yaml';
         link.click();
-      } else {
-        setErrorText('No nodes on canvas. Cannot download YAML file.');
       }
     } catch (error) {
-      setErrorText(
-        'All nodes must be connected from the root. Please look at your connections.',
-      );
       console.log(error);
     }
   };
   const handleError = (e) => {
     e.preventDefault();
     setModalOpen(!isModalOpen);
-    setIsError(false);
   };
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -89,6 +85,11 @@ const YamlButton = () => {
 
   useEffect(() => {
     !elements.length ? setIsError(true) : setIsError(false);
+    !elements.length
+      ? setErrorText('No nodes on canvas. Cannot download YAML file.')
+      : setErrorText(
+          'All nodes must be connected from the root. Please look at your connections.',
+        );
   }, [elements]);
 
   return (
