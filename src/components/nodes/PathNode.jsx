@@ -10,13 +10,6 @@ const PathNode = ({ data }) => {
         isValidConnection={(connection) => connection.source === 'some-id'}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-      <Handle
-        type="target"
-        position="right"
-        style={{ background: '#555' }}
-        isValidConnection={(connection) => connection.source === 'some-id'}
-        onConnect={(params) => console.log('handle onConnect', params)}
-      />
       <div>
         <strong>{data.label}</strong>
       </div>

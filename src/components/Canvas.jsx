@@ -52,7 +52,12 @@ export default function Canvas() {
       setElements((elements) => removeElements(elementsToRemove, elements));
     },
     onNodeDragStop(event, node) {
-      setElements(elements);
+      elements.map((el) => {
+        if (node.id === el.id) {
+          el.position = node.position;
+        }
+      });
+      setElements([...elements]);
     },
   };
 
