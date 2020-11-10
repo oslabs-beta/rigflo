@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 
 // SET UP ENV VARIABLES
 if (process.env.NODE_ENV !== 'production') {
-  console.log();
   const filePath = path.join(__dirname, `./.env.${process.env.NODE_ENV}`);
   require('dotenv').config({ path: filePath });
 }

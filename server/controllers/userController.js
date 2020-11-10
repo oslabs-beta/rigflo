@@ -1,15 +1,11 @@
 const axios = require('axios');
 
-const User = require('../models/userModel');
+// const User = require('../models/userModel');
 
 const userController = {};
 
 // Get the auth code from Github
 userController.authenticateUser = async (req, res, next) => {
-  /*
-    TODO: CREATE RANDOM UNGUESSABLE STRING, HARD CODED FOR NOW
-    This random string is passed to Github during initial OAuth request
-  */
   const randomString = '9323bb9ce6934469b58303863f8c0d54';
 
   try {
