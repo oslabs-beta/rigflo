@@ -9,10 +9,7 @@ module.exports = {
     '@snowpack/plugin-babel',
   ],
   proxy: {
-    '/api': {
-      target: 'ws://localhost:9999',
-      ws: true,
-    },
+    '/api': 'http://localhost:3000',
   },
   // install: [
   //   /* ... */
