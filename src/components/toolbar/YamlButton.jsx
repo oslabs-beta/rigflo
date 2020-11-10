@@ -43,14 +43,18 @@ const YamlButton = () => {
   };
 
   const downloadYaml = (event) => {
-    event.preventDefault();
-    const yamlData = jsonToYaml();
-    // downloadRef.current.href = toDataURL(yamlData);
-    const link = document.createElement('a');
-    link.href = toDataURL(yamlData);
-    link.download = 'spec.yaml';
-    link.click();
-    // window.open(toDataURL(yamlData));
+    try {
+      event.preventDefault();
+      const yamlData = jsonToYaml();
+      // downloadRef.current.href = toDataURL(yamlData);
+      const link = document.createElement('a');
+      link.href = toDataURL(yamlData);
+      link.download = 'spec.yaml';
+      link.click();
+      // window.open(toDataURL(yamlData));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
