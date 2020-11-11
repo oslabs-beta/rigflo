@@ -34,8 +34,10 @@ const Editor = () => {
     // If there is no selection, load an empty form
     if (!selectedElement) {
       setFormData({ path: '', description: '', method: 'Select Method' });
-    } else {
+    } else if (selectedElement && selectedElement.data) {
       setFormData(selectedElement.data);
+    } else {
+      console.log('not vaild selection.');
     }
   }, [selectedElement]);
 

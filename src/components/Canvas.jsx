@@ -73,6 +73,10 @@ const Canvas = () => {
       ]);
     }
   }, []);
+  //update elemnts JSON in localStroage
+  useEffect(() => {
+    setProject('rigflo-project', elements);
+  }, [elements]);
 
   // The various ReactFlow component handler props
   const reactFlowHandlers = {
@@ -83,16 +87,12 @@ const Canvas = () => {
 
     onConnect(params) {
       setElements((elements) => addEdge(params, elements));
-      setProject('rigflo-project', elements);
     },
 
-    onPaneClick() {
-      setProject('rigflo-project', elements);
-    },
+    onPaneClick(event) {},
 
     onElementsRemove(elementsToRemove) {
       setElements((elements) => removeElements(elementsToRemove, elements));
-      setProject('rigflo-project', elements);
     },
     onNodeDragStop(event, node) {
       elements.map((el) => {
