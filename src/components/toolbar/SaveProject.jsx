@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useElements } from '../../hooks/useElements';
 import Modal from 'react-modal';
+import { X } from 'heroicons-react';
 
 const customStyles = {
   content: {
@@ -10,6 +11,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    width: 'auto',
   },
 };
 
@@ -56,11 +58,12 @@ const SaveProject = () => {
   const [savedText, setSavedText] = useState('Save Project');
   const [projectName, setProjectName] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
-  const [project, setProject] = useLocalStorage(projectName, elements);
+  const [project, setProject] = useLocalStorage('rigflo-project', elements);
+  const [modalText, setModalText] = useState('');
 
   const handleSave = (e) => {
     e.preventDefault();
-    setProject(projectName, elements);
+    setProject('rigflo-project', elements);
     setModalOpen(!isModalOpen);
   };
 
@@ -81,7 +84,7 @@ const SaveProject = () => {
       <a
         href="#"
         onClick={toggleModal}
-        className="inline-block px-4 py-2 mt-4 ml-4 text-sm leading-none text-white border-2 border-white rounded hover:border-transparent hover:text-purple-500 hover:bg-white lg:mt-0"
+        className="inline-block px-4 py-2 mt-4 ml-4 text-sm font-bold leading-none text-white border-2 border-white rounded hover:border-transparent hover:text-purple-500 hover:bg-white lg:mt-0"
       >
         {isSaved ? savedText : 'Save Project'}
       </a>
@@ -91,26 +94,46 @@ const SaveProject = () => {
         style={customStyles}
         contentLabel="Save project dialog"
       >
-        <h1 className="text-center">Save Project</h1>
-        <form className="w-full max-w-sm">
-          <div className="flex items-center py-2 border-b border-teal-500">
-            <input
-              className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
-              type="text"
-              placeholder="Project name"
-              aria-label="Project name"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-            />
-            <button
-              className="flex-shrink-0 px-2 py-1 text-sm text-white bg-teal-500 border-4 border-teal-500 rounded hover:bg-teal-700 hover:border-teal-700"
-              type="button"
-              onClick={handleSave}
-            >
-              Save
-            </button>
+        {!elements.length ? (
+          <div
+            class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"
+            role="alert"
+          >
+            <p class="font-bold">
+              Warning
+              <span className="absolute top-0 bottom-0 right-0 px-4 py-3 mt-4 mr-4">
+                <X
+                  className="w-6 h-6 text-orange-700 cursor-pointer fill-current"
+                  onClick={toggleModal}
+                />
+              </span>
+            </p>
+            <p>Cannot save an empty project. Add some nodes.</p>
           </div>
-        </form>
+        ) : (
+          <>
+            <h1 className="text-center">Save Project</h1>
+            <form className="w-full max-w-sm">
+              <div className="flex items-center py-2 border-b border-teal-500">
+                <input
+                  className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
+                  type="text"
+                  placeholder="Project name"
+                  aria-label="Project name"
+                  value={projectName}
+                  onChange={(e) => setProjectName(e.target.value)}
+                />
+                <button
+                  className="flex-shrink-0 px-2 py-1 text-sm text-white bg-teal-500 border-4 border-teal-500 rounded hover:bg-teal-700 hover:border-teal-700"
+                  type="button"
+                  onClick={handleSave}
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </>
+        )}
       </Modal>
     </>
   );

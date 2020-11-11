@@ -7,12 +7,16 @@ module.exports = {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-babel',
+    '@snowpack/plugin-webpack',
   ],
   proxy: {
     '/api': {
       target: 'ws://localhost:9999',
       ws: true,
     },
+  },
+  installOptions: {
+    namedExports: ['react-flow-renderer'],
   },
   // install: [
   //   /* ... */
