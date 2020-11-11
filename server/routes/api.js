@@ -1,9 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 
 const router = express.Router();
 
 const userController = require('../controllers/userController');
 const projectController = require('../controllers/projectController');
+const repoController = require('../controllers/repoController');
+
+router.use(cors());
 
 router.get('/', (req, res) => {
   res.send('hello');
@@ -26,6 +30,10 @@ router.get(
 router.post('/projects', projectController.saveProject, (req, res) => {
   console.log('sending back status');
   return res.send('yep');
+});
+
+router.post('/repos', cors(), repoController.createNewRepo, (req, res) => {
+  return res.status(200).json(res.locals.data);
 });
 
 module.exports = router;

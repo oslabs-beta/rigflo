@@ -6,19 +6,25 @@ export default function PushToGithub() {
   const auth = useContext(AuthContext);
   const { token } = auth.authState;
 
-  async function fetchData() {
-    const config = {
-      method: 'POST',
-      url: `https://create-repo.rigflo.workers.dev/?token=${token}`,
-    };
-    const { data } = await axios(config);
+  // helper
+  // const fetchRequest = (uri, config = {}) => {
+  //   fetch(uri, config).then((res) => console.log(res));
+  // };
+
+  async function createRepo() {
+    console.log('before request');
+    const { data, error } = axios.post(
+      `http://localhost:3000/api/repos?token=${token}`,
+    );
+    if (error) console.error(error.message);
+
     console.log({ data });
   }
 
   return (
     <>
       <button
-        onClick={fetchData}
+        onClick={createRepo}
         className="inline-block px-4 py-2 mt-4 ml-4 text-sm leading-none text-white border-2 border-white rounded hover:border-transparent hover:text-purple-500 hover:bg-white lg:mt-0"
       >
         Push to Github

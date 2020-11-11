@@ -19,9 +19,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 
-// ROUTERS
-const apiRouter = require('./routes/api');
-server.use('/api', apiRouter);
+server.options('*', cors());
 
 // HANDLING CORS
 const allowCrossDomain = function (req, res, next) {
@@ -30,7 +28,12 @@ const allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 };
+
 server.use(allowCrossDomain);
+
+// ROUTERS
+const apiRouter = require('./routes/api');
+server.use('/api', apiRouter);
 
 // START DATABASE
 mongoose
