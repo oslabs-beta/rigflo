@@ -1,0 +1,194 @@
+{
+  "entities": {
+    "servers": {
+      "07ea5648-c9d1-4c91-8859-7c57291fc077": {
+        "url": "http://petstore.swagger.io/v1",
+        "__id": "07ea5648-c9d1-4c91-8859-7c57291fc077"
+      }
+    },
+    "operations": {
+      "7a093d1e-1fa0-4417-b4d9-17605cbeaa5c": {
+        "summary": "List all pets",
+        "operationId": "listPets",
+        "tags": ["pets"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paged array of pets",
+            "headers": {
+              "x-next": {
+                "description": "A link to the next page of responses",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pets"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "__id": "7a093d1e-1fa0-4417-b4d9-17605cbeaa5c"
+      },
+      "f413b30a-f46b-46d8-ae7f-f6991b86e055": {
+        "summary": "Create a pet",
+        "operationId": "createPets",
+        "tags": ["pets"],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "__id": "f413b30a-f46b-46d8-ae7f-f6991b86e055"
+      },
+      "0a2aed43-cd66-4d04-82a6-462cc20263eb": {
+        "summary": "Info for a specific pet",
+        "operationId": "showPetById",
+        "tags": ["pets"],
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "The id of the pet to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "__id": "0a2aed43-cd66-4d04-82a6-462cc20263eb"
+      }
+    },
+    "paths": {
+      "fad3f72a-6c7c-401b-90ea-edcd56555da6": {
+        "get": "7a093d1e-1fa0-4417-b4d9-17605cbeaa5c",
+        "post": "f413b30a-f46b-46d8-ae7f-f6991b86e055",
+        "__id": "fad3f72a-6c7c-401b-90ea-edcd56555da6"
+      },
+      "4c0da3db-f9a2-48d9-a78e-1c843128e497": {
+        "get": "0a2aed43-cd66-4d04-82a6-462cc20263eb",
+        "__id": "4c0da3db-f9a2-48d9-a78e-1c843128e497"
+      }
+    },
+    "schemas": {
+      "39a471da-925f-4718-9a8c-b77b207d032d": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          }
+        },
+        "__id": "39a471da-925f-4718-9a8c-b77b207d032d"
+      },
+      "167d0545-1681-45f8-884e-329b72d902d1": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Pet"
+        },
+        "__id": "167d0545-1681-45f8-884e-329b72d902d1"
+      },
+      "46017e2d-fcf4-45d5-a97f-31b2422b5d90": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "__id": "46017e2d-fcf4-45d5-a97f-31b2422b5d90"
+      }
+    }
+  },
+  "result": {
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Swagger Petstore",
+      "license": {
+        "name": "MIT"
+      }
+    },
+    "servers": ["07ea5648-c9d1-4c91-8859-7c57291fc077"],
+    "paths": {
+      "/pets": "fad3f72a-6c7c-401b-90ea-edcd56555da6",
+      "/pets/{petId}": "4c0da3db-f9a2-48d9-a78e-1c843128e497"
+    },
+    "components": {
+      "schemas": {
+        "Pet": "39a471da-925f-4718-9a8c-b77b207d032d",
+        "Pets": "167d0545-1681-45f8-884e-329b72d902d1",
+        "Error": "46017e2d-fcf4-45d5-a97f-31b2422b5d90",
+        "__id": "85d6d593-cd7e-49eb-a17a-6fc929a5e8bd"
+      }
+    }
+  }
+}

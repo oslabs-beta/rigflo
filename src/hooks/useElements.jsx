@@ -16,4 +16,7 @@ export const ElementsProvider = (props) => {
 /** Provides access to the elements in the flow
  * @returns {[import('react-flow-renderer').Elements[], Function]}
  */
-export const useElements = () => useContext(ElementsContext);
+export const useElements = () => {
+  const [elements, setElements] = useContext(ElementsContext);
+  return [elements || [], setElements];
+};

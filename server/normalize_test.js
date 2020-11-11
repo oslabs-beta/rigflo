@@ -97,5 +97,5 @@ function tagObjectsWithID(obj) {
     normalized.entities,
   );
 
-  console.log(JSON.stringify(denormalized, null, ' '));
+  console.log(JSON.stringify(normalized, null, ' '));
 })();

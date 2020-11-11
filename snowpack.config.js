@@ -4,12 +4,12 @@ module.exports = {
     src: '/_dist_',
   },
   plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
-  proxy: {
-    '/api': {
-      target: 'ws://localhost:9999',
-      ws: true,
-    },
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: 'ws://localhost:9999',
+  //     ws: true,
+  //   },
+  // },
   // install: [
   //   /* ... */
   // ],
