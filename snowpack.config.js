@@ -15,7 +15,7 @@ module.exports = {
     },
   },
   installOptions: {
-    namedExports: ['/node_modules/react-flow-renderer/dist/ReactFlow.esm.js'],
+    namedExports: ['react-flow-renderer'],
     rollup: {
       plugins: [require('rollup-plugin-node-polyfills')()],
     },
