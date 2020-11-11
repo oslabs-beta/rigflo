@@ -9,12 +9,6 @@ module.exports = {
     '@snowpack/plugin-babel',
     ['@snowpack/plugin-webpack', {}],
   ],
-  proxy: {
-    '/api': {
-      target: 'ws://localhost:9999',
-      ws: true,
-    },
-  },
   installOptions: {
     namedExports: ['react-flow-renderer'],
     rollup: {
