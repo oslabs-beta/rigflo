@@ -7,12 +7,12 @@ module.exports = {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-babel',
-    [
-      '@snowpack/plugin-webpack',
-      {
-        sourceMap: true,
-      },
-    ],
+    // [
+    //   '@snowpack/plugin-webpack',
+    //   {
+    //     sourceMap: true,
+    //   },
+    // ],
   ],
   proxy: {
     '/api': {
