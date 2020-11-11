@@ -1,12 +1,11 @@
-import { expect } from 'chai';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Description from '../components/editor/Description';
+import Path from '../components/editor/Path';
 
-describe('<Description />', () => {
+describe('<Path />', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Description />, div);
+    ReactDOM.render(<Path />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
