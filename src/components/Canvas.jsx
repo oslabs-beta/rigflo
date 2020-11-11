@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import * as ReactFlow from 'react-flow-renderer';
-
-const { removeElements, addEdge, MiniMap, Controls, Background } = ReactFlow;
+import ReactFlow from 'react-flow-renderer';
+import {
+  removeElements,
+  addEdge,
+  MiniMap,
+  Controls,
+  Background,
+} from 'react-flow-renderer';
 
 import ServerNode from './nodes/ServerNode';
 import PathNode from './nodes/PathNode';
