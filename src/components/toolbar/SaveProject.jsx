@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useElements } from '../../hooks/useElements';
 import Modal from 'react-modal';
 
@@ -68,11 +69,28 @@ const SaveProject = () => {
     setModalOpen(!isModalOpen);
   };
 
+  function saveProject(uri, config = {}) {
+    fetch(uri, config).then((res) => console.log(res));
+  }
+
+  useEffect(() => {
+    console.log({ project });
+    saveProject('http://localhost:3000/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ project: elements }),
+    });
+
+    console.log('sending to database');
+  }, [project]);
+
   useEffect(() => {
     setSavedText('Saved!');
+
     const timer = setTimeout(() => {
       setIsSaved(false);
     }, 800);
+
     return () => clearTimeout(timer);
   }, [isSaved]);
 

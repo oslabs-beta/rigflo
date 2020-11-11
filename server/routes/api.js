@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/userController');
+const projectController = require('../controllers/projectController');
 
 router.get('/', (req, res) => {
   res.send('hello');
@@ -21,5 +22,10 @@ router.get(
     );
   },
 );
+
+router.post('/projects', projectController.saveProject, (req, res) => {
+  console.log('sending back status');
+  return res.send('yep');
+});
 
 module.exports = router;
