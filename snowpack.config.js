@@ -7,12 +7,6 @@ module.exports = {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-babel',
-    // [
-    //   '@snowpack/plugin-webpack',
-    //   {
-    //     sourceMap: true,
-    //   },
-    // ],
   ],
   proxy: {
     '/api': {
@@ -21,6 +15,7 @@ module.exports = {
     },
   },
   installOptions: {
+    namedExports: ['react-flow-renderer.js'],
     rollup: {
       plugins: [require('rollup-plugin-node-polyfills')()],
     },
