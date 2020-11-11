@@ -11,9 +11,6 @@ module.exports = {
   ],
   installOptions: {
     namedExports: ['react-flow-renderer'],
-    rollup: {
-      plugins: [require('rollup-plugin-node-polyfills')()],
-    },
   },
   install: ['react-flow-renderer'],
 
