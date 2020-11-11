@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactFlow, {
+import ReactFlow from 'react-flow-renderer';
+import {
   removeElements,
   addEdge,
   MiniMap,

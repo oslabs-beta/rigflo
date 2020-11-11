@@ -1,6 +1,6 @@
 import React from 'react';
 import Inspector from './Inspector';
-import Editor from './Editor/Editor';
+import Editor from './editor/Editor';
 import Avatar from './Avatar';
 import { Home } from 'heroicons-react';
 
