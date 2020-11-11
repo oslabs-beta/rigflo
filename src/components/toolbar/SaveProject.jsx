@@ -58,12 +58,12 @@ const SaveProject = () => {
   const [savedText, setSavedText] = useState('Save Project');
   const [projectName, setProjectName] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
-  const [project, setProject] = useLocalStorage(projectName, elements);
+  const [project, setProject] = useLocalStorage('rigflo-project', elements);
   const [modalText, setModalText] = useState('');
 
   const handleSave = (e) => {
     e.preventDefault();
-    setProject(projectName, elements);
+    setProject('rigflo-project', elements);
     setModalOpen(!isModalOpen);
   };
 
