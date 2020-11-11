@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "dev:snowpack": "snowpack dev",
-    "start": "snowpack build",
+    "start": "npm-run-all --parallel watch:tailwind dev:snowpack",
     "build": "snowpack build",
     "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
