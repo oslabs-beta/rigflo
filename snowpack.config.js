@@ -8,12 +8,6 @@ module.exports = {
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-babel',
   ],
-  proxy: {
-    '/api': {
-      target: 'ws://localhost:9999',
-      ws: true,
-    },
-  },
   installOptions: {
     namedExports: ['react-flow-renderer'],
     rollup: {
