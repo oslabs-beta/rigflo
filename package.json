@@ -6,9 +6,7 @@
   ],
   "scripts": {
     "dev:snowpack": "snowpack dev",
-    "dev:ws": "nodemon ./server/index.js",
-    "dev:electron": "wait-on http://localhost:8080 && electron .",
-    "start": "npm-run-all --parallel watch:tailwind dev:snowpack",
+    "start": "snowpack build",
     "build": "snowpack build",
     "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
