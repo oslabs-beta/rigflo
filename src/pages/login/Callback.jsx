@@ -25,5 +25,5 @@ export default function Callback() {
     }
     fetchData();
   }, [code]);
-  return null;
+  return 'Loading...';
 }
