@@ -1,6 +1,12 @@
 import objects from '../utils/objects';
+import { normalize } from '../utils/normalize';
 
-export default objects.document({
+/**
+ * @file
+ * Initial normalized state representing an blank OpenAPI document
+ */
+
+const document = objects.document({
   openapi: '3.0.0',
   info: objects.info({
     title: 'My New API',
@@ -10,3 +16,5 @@ export default objects.document({
   paths: {},
   components: objects.components(),
 });
+
+export default normalize(document);

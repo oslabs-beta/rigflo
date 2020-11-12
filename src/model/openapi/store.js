@@ -6,8 +6,6 @@ const noop = () => {};
 const immer = (config) => (set, get, api) =>
   config((fn) => set(produce(fn)), get, api);
 
-export default 
-
 export const createStore = (
   state,
   createActions = noop,

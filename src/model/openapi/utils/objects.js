@@ -3,17 +3,17 @@
  * Helper functions for creating different components of the OpenAPI document
  */
 
-/* eslint no-use-before-define: 0 */
+const objects = {};
 
-const document = ({
+objects.document = ({
   openapi = '',
-  info = info(),
+  info = objects.info(),
   paths = {},
   servers = [],
-  components = components(),
+  components = objects.components(),
   security = [],
   tags = [],
-  externalDocs = externalDocs(),
+  externalDocs = objects.externalDocs(),
 } = {}) => ({
   openapi,
   info,
@@ -25,13 +25,13 @@ const document = ({
   externalDocs,
 });
 
-const info = ({
+objects.info = ({
   title = '',
   version = '',
   description = '',
   termsOfService = '',
-  contact = contact(),
-  license = license(),
+  contact = objects.contact(),
+  license = objects.license(),
 } = {}) => ({
   title,
   version,
@@ -41,20 +41,20 @@ const info = ({
   license,
 });
 
-const contact = ({ name = '', url = '', email = '' } = {}) => ({
+objects.contact = ({ name = '', url = '', email = '' } = {}) => ({
   name,
   url,
   email,
 });
-const license = ({ name = '', url = '' } = {}) => ({ name, url });
+objects.license = ({ name = '', url = '' } = {}) => ({ name, url });
 
-const server = ({ url = '', description = '', variables = [] }) => ({
+objects.server = ({ url = '', description = '', variables = [] }) => ({
   url,
   description,
   variables,
 });
 
-const serverVariable = ({
+objects.serverVariable = ({
   default_ = '',
   enum_ = [],
   description = '',
@@ -64,12 +64,12 @@ const serverVariable = ({
   description,
 });
 
-const externalDocs = ({ url = '', description = '' } = {}) => ({
+objects.externalDocs = ({ url = '', description = '' } = {}) => ({
   url,
   description,
 });
 
-const components = ({
+objects.components = ({
   schemas = {},
   responses = {},
   parameters = {},
@@ -91,13 +91,4 @@ const components = ({
   callbacks,
 });
 
-export default {
-  document,
-  info,
-  contact,
-  license,
-  server,
-  serverVariable,
-  components,
-  externalDocs,
-};
+export default objects;

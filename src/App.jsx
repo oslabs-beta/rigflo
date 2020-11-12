@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 
 import { ElementsProvider } from './hooks/useElements';
 import { ReactFlowProvider } from 'react-flow-renderer';
-import Layout from './Layout';
+import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import Canvas from './components/Canvas';
 import Callback from './pages/login/Callback';

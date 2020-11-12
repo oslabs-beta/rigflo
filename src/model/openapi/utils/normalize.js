@@ -16,7 +16,8 @@ const documentSchema = buildSchema();
  */
 export function normalize(document) {
   attachEntityIDs(document);
-  return _normalize(document, documentSchema);
+  const normed = _normalize(document, documentSchema);
+  return fixMissingEntityKeys(normed);
 }
 
 /** Denormalizes an already normalized JSON representation of an OpenAPI document
@@ -27,6 +28,16 @@ export function normalize(document) {
 export function denormalize({ result, entities }) {
   const denormed = _denormalize(result, documentSchema, entities);
   return removeEntityIDs(denormed);
+}
+
+/** Adds keys for non-existent entities in the 'entities' object from the normalized result
+ * for consistency.
+ */
+function fixMissingEntityKeys(document) {
+  ['servers', 'paths', 'operations', 'schemas'].forEach((key) => {
+    if (!document.entities[key]) document.entities[key] = {};
+  });
+  return document;
 }
 
 /**
