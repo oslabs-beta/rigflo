@@ -4,6 +4,7 @@ const repoController = {};
 
 repoController.createNewRepo = async (req, res, next) => {
   const { token } = req.query;
+  const { elements } = req.body;
 
   console.log({ token });
 
