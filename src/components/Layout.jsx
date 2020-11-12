@@ -1,5 +1,5 @@
 import React from 'react';
-import Toolbar from './Toolbar';
+import Toolbar from './components/toolbar/Toolbar';
 
 const Layout = ({ sidebar, children }) => (
   <div className="flex h-screen overflow-hidden bg-white">

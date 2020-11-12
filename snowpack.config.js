@@ -3,13 +3,17 @@ module.exports = {
     public: '/',
     src: '/_dist_',
   },
-  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
-  // proxy: {
-  //   '/api': {
-  //     target: 'ws://localhost:9999',
-  //     ws: true,
-  //   },
-  // },
+  plugins: [
+    '@snowpack/plugin-react-refresh',
+    '@snowpack/plugin-dotenv',
+    '@snowpack/plugin-babel',
+  ],
+  installOptions: {
+    namedExports: ['react-flow-renderer'],
+    rollup: {
+      plugins: [require('rollup-plugin-node-polyfills')()],
+    },
+  },
   // install: [
   //   /* ... */
   // ],
