@@ -1,5 +1,4 @@
 import React from 'react';
-import './tailwind.output.css';
 import { Router } from '@reach/router';
 
 import { ElementsProvider } from './hooks/useElements';

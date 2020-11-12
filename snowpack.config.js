@@ -1,3 +1,4 @@
+/** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
     public: '/',
@@ -6,8 +7,8 @@ module.exports = {
   plugins: [
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
-    '@snowpack/plugin-babel',
-    '@snowpack/plugin-webpack',
+    '@snowpack/plugin-postcss',
+    '@snowpack/plugin-optimize',
   ],
   installOptions: {
     namedExports: ['react-flow-renderer'],
@@ -24,7 +25,7 @@ module.exports = {
   // devOptions: {
   //
   // },
-  buildOptions: {},
+  // buildOptions: {},
   // alias: {
   //   /* ... */
   // },

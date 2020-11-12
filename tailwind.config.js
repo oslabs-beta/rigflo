@@ -13,4 +13,9 @@ module.exports = {
       layout: 'sidebar',
     }),
   ],
+  purge: ['./src/**/*.html', './src/**/*.jsx'],
+  future: {
+    // See: https://tailwindcss.com/docs/upcoming-changes
+    purgeLayersByDefault: true,
+  },
 };
