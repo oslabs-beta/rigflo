@@ -1,8 +1,0 @@
-language: node_js
-node_js:
-  - 'stable'
-script:
-  - npm run format
-  - npm run lint
-notifications:
-  email: false
