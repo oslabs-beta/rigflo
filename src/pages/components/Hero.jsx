@@ -16,10 +16,11 @@ const Hero = (props) => {
 
         <main className='mt-8 sm:mt-16 md:mt-20 lg:mt-24'>
           <div className='max-w-screen-xl mx-auto'>
+            <div id='logo' className='grid-cols-1'></div>
             <div className='lg:grid lg:grid-cols-1 lg:gap-0'>
               <div className='px-4 sm:px-6 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:flex lg:items-center'>
                 <div>
-                  <h2 className='mt-4 text-4xl font-extrabold leading-10 tracking-tight text-center text-white sm:mt-5 sm:leading-none sm:text-5xl lg:mt-6 lg:text-6xl xl:text-8xl'>
+                  <h2 className='mt-2 text-6xl font-extrabold leading-10 tracking-tight text-center text-white sm:mt-5 sm:leading-none sm:text-5xl lg:mt-6 lg:text-6xl xl:text-8xl'>
                     rigflo
                   </h2>
                   <p className='mt-3 text-center text-white sm:mt-5 sm:text-xl lg:text-lg xl:text-xl'>

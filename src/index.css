@@ -1,0 +1,9 @@
+#logo {
+  background-image: url("./assets/rigflo.png");
+  height: 400px;
+  width: 600px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: contain;
+  margin: auto;
+}
