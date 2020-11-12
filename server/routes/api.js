@@ -7,12 +7,7 @@ const userController = require('../controllers/userController');
 const projectController = require('../controllers/projectController');
 const repoController = require('../controllers/repoController');
 
-router.use(cors());
-
-router.get('/', (req, res) => {
-  res.send('hello');
-  // res.status(201).json({ message: 'Success' });
-});
+// router.use(cors());
 
 router.get(
   '/login/callback',
@@ -33,7 +28,17 @@ router.post('/projects', projectController.saveProject, (req, res) => {
 });
 
 router.post('/repos', cors(), repoController.createNewRepo, (req, res) => {
-  return res.status(200).json(res.locals.data);
+  console.log('final callback');
+  const { id, name, html_url } = res.locals.data;
+  console.log({ id });
+  console.log({ name });
+  console.log({ html_url });
+  const response = {
+    id,
+    name,
+    html_url,
+  };
+  res.status(201).json(response);
 });
 
 module.exports = router;

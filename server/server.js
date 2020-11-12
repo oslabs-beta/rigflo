@@ -42,7 +42,6 @@ mongoose
     useUnifiedTopology: true,
     dbName: 'rigflo',
   })
-  .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
 // GLOBAL ERROR HANDLER
@@ -76,4 +75,4 @@ console.log(
 );
 console.log(`Server is listening at http://localhost:${PORT}`);
 console.log(`Client is live at http://localhost:8080`);
-console.log(process.env.MONGO_URI);
+console.log('MONGODB URI is:', process.env.MONGO_URI);

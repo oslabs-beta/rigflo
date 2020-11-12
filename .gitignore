@@ -4,5 +4,5 @@ web_modules
 node_modules
 .DS_Store
 tailwind.output.css
-.env
-.env.*
+# .env
+# .env.*

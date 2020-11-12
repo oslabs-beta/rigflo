@@ -1,7 +1,7 @@
 import React from 'react';
 import YamlButton from './YamlButton';
 import DeleteProject from './DeleteProject';
-import SaveProject from './SaveProject';
+// import SaveProject from './SaveProject';
 import PushToGithub from './PushToGithub';
 
 const Toolbar = () => {
@@ -11,12 +11,8 @@ const Toolbar = () => {
         <div>
           <YamlButton />
           <DeleteProject />
-<<<<<<< HEAD
-          <SaveProject />
-          <PushToGithub />
-=======
           {/* <SaveProject /> */}
->>>>>>> main
+          <PushToGithub />
         </div>
       </div>
     </nav>

@@ -10,6 +10,7 @@ module.exports = {
   ],
   proxy: {
     '/api': 'http://localhost:3000',
+  },
   installOptions: {
     namedExports: ['react-flow-renderer'],
     rollup: {

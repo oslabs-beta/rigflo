@@ -3,30 +3,39 @@ const axios = require('axios');
 const repoController = {};
 
 repoController.createNewRepo = async (req, res, next) => {
-  const { token } = req.body;
+  const { token } = req.query;
 
-  console.log(token);
+  console.log({ token });
 
-  const body = JSON.stringify({ name: 'hardcodedfornowfdafdfa' });
+  const body = JSON.stringify({ name: `rigflo - ${Date.now()}` });
 
   try {
     const config = {
+      url: 'user/repos',
       method: 'post',
-      url: 'https://api.github.com/user/repos',
+      baseURL: 'https://api.github.com/',
       headers: {
-        Authorization: 'token a07962e8bb1db8abd4736da8e9a3486fac6b9e1e',
+        Authorization: `token ${token}`,
         'Content-Type': 'application/json',
-        Cookie:
-          '_octo=GH1.1.540748162.1605028314; tz=America%2FChicago; logged_in=yes; dotcom_user=jamesscaggs',
       },
       data: body,
+      responseType: 'json',
     };
 
-    const { data, error } = await axios(config);
-    if (error) console.log(error.message);
+    const { data } = await axios(config)
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+        return response;
+      })
+      .catch((error) => console.log({ error }));
 
     console.log({ data });
     res.locals.data = data;
+    console.log('after setting locals');
     return next();
   } catch (e) {
     return next({
