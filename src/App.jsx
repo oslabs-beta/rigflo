@@ -10,12 +10,16 @@ import Canvas from './components/Canvas';
 import Callback from './pages/login/Callback';
 import { AuthProvider } from './context/AuthContext';
 
+const NotFound = () => {
+  return <h1>Page not found</h1>;
+};
 const App = () => {
   return (
     <ReactFlowProvider>
       <ElementsProvider>
         <AuthProvider>
           <Router>
+            <NotFound default />
             <Callback path="/login/callback" />
           </Router>
           <Layout sidebar={<Sidebar />}>
