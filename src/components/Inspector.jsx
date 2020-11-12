@@ -5,7 +5,7 @@ import { Code } from 'heroicons-react';
 import 'react-json-pretty/themes/1337.css';
 import useSelectedElement from '../hooks/useSelectedElement';
 
-const Inspector = () => {
+export default function Inspector() {
   const selectedElement = useSelectedElement();
   const [isOpen, setIsOpen] = useState(true);
 
@@ -34,6 +34,4 @@ const Inspector = () => {
       </Transition>
     </div>
   );
-};
-
-export default Inspector;
+}
