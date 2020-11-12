@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = (props) => {
   return (
-    <div className='relative overflow-hidden bg-purple-400'>
+    <div className='relative overflow-hidden bg-purple-500'>
       <div className='relative pt-6 pb-12 sm:pb-32'>
         <nav className='relative flex items-center justify-between max-w-screen-xl px-4 mx-auto sm:px-6'>
           <div className='md:flex'>
@@ -23,9 +23,7 @@ const Hero = (props) => {
                     rigflo
                   </h2>
                   <p className='mt-3 text-center text-white sm:mt-5 sm:text-xl lg:text-lg xl:text-xl'>
-                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                    qui lorem cupidatat commodo. Elit sunt amet fugiat veniam
-                    occaecat fugiat aliqua ad ad non deserunt sunt.
+                    A design first approach to speed up API delivery.
                   </p>
                 </div>
               </div>
