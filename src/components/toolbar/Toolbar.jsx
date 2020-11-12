@@ -10,7 +10,7 @@ const Toolbar = () => {
         <div>
           <YamlButton />
           <DeleteProject />
-          {/* <SaveProject /> */}
+          <SaveProject />
         </div>
       </div>
     </nav>

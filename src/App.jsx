@@ -1,21 +1,28 @@
 import React from 'react';
-import './tailwind.output.css';
+import { Router } from '@reach/router';
 
-import { RecoilRoot } from 'recoil';
+import { ElementsProvider } from './hooks/useElements';
 import { ReactFlowProvider } from 'react-flow-renderer';
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import Canvas from './components/Canvas';
+import Callback from './pages/login/Callback';
+import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
   return (
-    <RecoilRoot>
-      <ReactFlowProvider>
-        <Layout sidebar={<Sidebar />}>
-          <Canvas />
-        </Layout>
-      </ReactFlowProvider>
-    </RecoilRoot>
+    <ReactFlowProvider>
+      <ElementsProvider>
+        <AuthProvider>
+          <Router>
+            <Callback path="/login/callback" />
+          </Router>
+          <Layout sidebar={<Sidebar />}>
+            <Canvas />
+          </Layout>
+        </AuthProvider>
+      </ElementsProvider>
+    </ReactFlowProvider>
   );
 };
 
