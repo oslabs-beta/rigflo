@@ -12,7 +12,7 @@ const Toolbar = () => {
           <YamlButton />
           {/* <DeleteProject /> */}
           {/* <SaveProject /> */}
-          <PushToGithub />
+          {/* <PushToGithub /> */}
         </div>
       </div>
     </nav>
