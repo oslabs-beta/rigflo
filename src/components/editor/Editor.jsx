@@ -24,7 +24,7 @@ const Editor = () => {
     setMethod(method);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   // When the selectedElement changes, we want to update the form data
   useEffect(() => {

@@ -6,11 +6,6 @@ export default function PushToGithub() {
   const auth = useContext(AuthContext);
   const { token } = auth.authState;
 
-  // helper
-  // const fetchRequest = (uri, config = {}) => {
-  //   fetch(uri, config).then((res) => console.log(res));
-  // };
-
   async function createRepo() {
     console.log('before request');
     const { data, error } = axios.post(
