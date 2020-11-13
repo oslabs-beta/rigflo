@@ -10,7 +10,7 @@ const Toolbar = () => {
       <div className="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
         <div>
           <YamlButton />
-          <DeleteProject />
+          {/* <DeleteProject /> */}
           {/* <SaveProject /> */}
           <PushToGithub />
         </div>
