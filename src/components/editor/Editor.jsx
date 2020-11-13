@@ -98,7 +98,7 @@ const Editor = () => {
   };
 
   return (
-    <div className="flow-root">
+    <div className="flow-root mb-4">
       <a
         href="#"
         className="flex items-center px-2 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out bg-white rounded-md group hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200"
@@ -106,7 +106,7 @@ const Editor = () => {
       >
         {/* Heroicon name: home */}
         <PencilAlt className="w-6 h-6 mr-3 text-gray-500 transition duration-150 ease-in-out group-hover:text-gray-500 group-focus:text-gray-600" />
-        Request Editor
+        Requests
       </a>
       <Transition show={isOpen} style={{ marginBottom: '440px' }}>
         <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
@@ -115,10 +115,10 @@ const Editor = () => {
               <div className="pt-8 mt-8 border-t border-gray-200 sm:mt-5 sm:pt-10">
                 <div>
                   <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Request Details
+                    Create / Edit Requests
                   </h3>
                   <p className="max-w-2xl mt-1 text-sm leading-5 text-gray-500">
-                    Enter basic request information
+                    Create a new node or select a node on the canvas to edit
                   </p>
                 </div>
                 <Path pathInput={path} setPathInput={setPath} />
