@@ -1,6 +1,5 @@
 {
   "name": "rigflo",
-  "main": "public/electron.js",
   "browserslist": [
     "since 2017-06"
   ],
