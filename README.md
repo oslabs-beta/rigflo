@@ -1,25 +1,32 @@
-# New Project
+# 🏗 Rigflo
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+Rigflo is a visual interface for exploring and editing [OpenAPI](https://www.openapis.org/) documents. The tool aims to provide developers with an intiuitive interface to get up and running when building out APIs. By lowering the barrier of entry to working with OpenAPI documents, more developers can gain access to the various tools within the OpenAPI ecosystem.
 
-## Available Scripts
+![Rigflo](./docs/rigflo.png)
 
-### npm start
+---
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+## Features
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+- [x] Connect and route GET, POST, PUT, DELETE paths
+- [x] Edit path metadata
+- [x] Github integration
+- [x] Auto-save via local storage
+- [x] Export to YAML
 
-### npm run build
+## Development
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!!
+1. Fork this repository: `gh repo fork https://github.com/oslabs-beta/rigflo`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.js` config file.
+**Note: Rigflo uses Snowpack for fast unbundled development. If you're having issues starting the development server, reference [their docs](https://www.snowpack.dev/) for guidance.**
 
-### npm test
+## Contributors
 
-Launches the application test runner...
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+Rigflo is under active development in collaboration with [OS Labs](https://github.com/oslabs-beta/)
+
+- [Akosua Kernizan](https://github.com/akernizan)
+- [Garrett James](https://github.com/gjames5355)
+- [James Scaggs](https://github.com/jamesscaggs)
+- [Sam Carlile](https://github.com/samkcarlile)
