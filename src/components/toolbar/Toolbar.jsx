@@ -1,7 +1,8 @@
 import React from 'react';
 import YamlButton from './YamlButton';
 import DeleteProject from './DeleteProject';
-import SaveProject from './SaveProject';
+// import SaveProject from './SaveProject';
+import PushToGithub from './PushToGithub';
 
 const Toolbar = () => {
   return (
@@ -9,8 +10,9 @@ const Toolbar = () => {
       <div className="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
         <div>
           <YamlButton />
-          <DeleteProject />
+          {/* <DeleteProject /> */}
           {/* <SaveProject /> */}
+          {/* <PushToGithub /> */}
         </div>
       </div>
     </nav>

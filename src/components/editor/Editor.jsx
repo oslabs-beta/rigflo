@@ -24,7 +24,7 @@ const Editor = () => {
     setMethod(method);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   // When the selectedElement changes, we want to update the form data
   useEffect(() => {
@@ -106,19 +106,20 @@ const Editor = () => {
       >
         {/* Heroicon name: home */}
         <PencilAlt className="w-6 h-6 mr-3 text-gray-500 transition duration-150 ease-in-out group-hover:text-gray-500 group-focus:text-gray-600" />
-        Request Editor
+        Requests
       </a>
-      <Transition show={isOpen} style={{ marginBottom: '440px' }}>
+      <Transition show={isOpen} style={{ marginBottom: '500px' }}>
         <div className="flex flex-col h-0 bg-white border-r border-gray-200 flex-0">
           <form>
-            <div className="px-2 mt-5 space-y-1">
+            <div className="px-2 space-y-1">
               <div className="pt-8 mt-8 border-t border-gray-200 sm:mt-5 sm:pt-10">
                 <div>
                   <h3 className="text-lg font-medium leading-6 text-gray-900">
-                    Request Details
+                    Create / Edit Requests
                   </h3>
                   <p className="max-w-2xl mt-1 text-sm leading-5 text-gray-500">
-                    Enter basic request information
+                    Requests and routes are represented as nodes on the canvas.
+                    Create a new node or select a node on the canvas to edit.
                   </p>
                 </div>
                 <Path pathInput={path} setPathInput={setPath} />
@@ -136,20 +137,20 @@ const Editor = () => {
                     <button
                       type="button"
                       onClick={updateSelectedNode}
-                      className="px-4 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
+                      className="px-6 py-2 mt-4 mb-8 mr-8 font-bold text-white transition duration-150 ease-in-out bg-indigo-600  rounded shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-500 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
                     >
-                      Edit
+                      Save Changes
                     </button>
                     <button
                       type="button"
                       onClick={removeSelectedNode}
-                      className="px-4 py-2 mt-4 text-red-700 bg-transparent border border-red-500 rounded mb-8font-semibold hover:bg-red-500 hover:text-white hover:border-transparent"
+                      className="px-6 py-2 mt-4 mb-8 font-semibold text-gray-700 transition duration-150 bg-transparent border border-gray-500 rounded ease-in-ou hover:bg-gray-500 hover:text-white hover:border-transparent focus:shadow-outline-gray sm:text-sm sm:leading-5"
                     >
-                      Delete selected node
+                      Delete Node
                     </button>
                   </>
                 ) : (
-                  <AddPathBtn addNode={addNode} />
+                  <AddPathBtn addNode={addNode} path={path} method={method} />
                 )}
               </div>
             </div>

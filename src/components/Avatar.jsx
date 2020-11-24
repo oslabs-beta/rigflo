@@ -10,10 +10,13 @@ export default function Avatar() {
 
   const { login, avatar_url } = authState.userInfo;
 
+  const clientId = '9736e547efbf758aa0dc'; // from GH application settings area
+  const scope = 'scope=user%20public_repo';
+
   if (!authState.token) {
     return (
       <a
-        href="https://new-auth.rigflo.workers.dev"
+        href={`https://github.com/login/oauth/authorize?client_id=${clientId}&scope=${scope}`}
         className="text-center border border-solid border-gray-400 w-1/2 py-2 rounded-md hover:bg-black hover:text-white mt-6 ml-2"
       >
         <FontAwesomeIcon icon={faGithub} /> Sign in with Github
