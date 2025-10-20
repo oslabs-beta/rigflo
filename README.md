@@ -26,7 +26,6 @@ Rigflo is a visual interface for exploring and editing [OpenAPI](https://www.ope
 
 Rigflo is under active development in collaboration with [OS Labs](https://github.com/oslabs-beta/)
 
-- [Akosua Kernizan](https://github.com/akernizan)
 - [Garrett James](https://github.com/gjames5355)
 - [James Scaggs](https://github.com/jamesscaggs)
 - [Sam Carlile](https://github.com/samkcarlile)
